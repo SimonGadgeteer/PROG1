@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 /**
- * Java Applikation zur Verwaltung eines Events, welcher einen spezifischen Künstler, bzw. Künstlergruppe
- * enthält. Zusätzlich können verschiedene Ticketkategorien mit einer individuellen Anzahl und Preis
+ * Java Applikation zur Verwaltung eines Events, welcher einen spezifischen Kuenstler, bzw. Kuenstlergruppe
+ * enthaelt. Zusaetzlich koennen verschiedene Ticketkategorien mit einer individuellen Anzahl und Preis
  * definiert werden.
  * 
- * @author David Kramer, Simon Schwarz 
+ * @author Dave Kramer, Simon Schwarz 
  * @version 0.3a
  */
 public class Event
