@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * enthaelt. Zusaetzlich koennen verschiedene Ticketkategorien mit einer individuellen Anzahl und Preis
  * definiert werden.
  * 
- * @author Dave Kramer, Simon Schwarz 
+ * @author Dave Kramer, Simon Black 
  * @version 0.3a
  */
 public class Event
