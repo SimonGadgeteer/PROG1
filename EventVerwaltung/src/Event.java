@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 
 /**
- * Write a description of class Event here.
+ * Java Applikation zur Verwaltung eines Events, welcher einen spezifischen Künstler, bzw. Künstlergruppe
+ * enthält. Zusätzlich können verschiedene Ticketkategorien mit einer individuellen Anzahl und Preis
+ * definiert werden.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author David Kramer, Simon Schwarz 
+ * @version 0.3a
  */
 public class Event
 {
@@ -20,11 +22,13 @@ public class Event
         // initialise instance variables
     }
 
+
     /**
-     * An example of a method - replace this comment with your own
+     * Erstellt einen neue Ticketkategorie
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * @param kategorie	Ticketkategorie
+     * @param preis		Preis der Tickets in dieser Kategorie
+     * @param anzahl	Anzahl vorhanden Tickets in der Kategorie
      */
     public void setTicket(int kategorie,int preis, int anzahl)
     {
@@ -32,6 +36,12 @@ public class Event
         alleTickets.add(ticket);
     }
     
+    /**
+     * Methode um Tickets zu verkaufen, bzw. kaufen.
+     * 
+     * @param anzahl	Die gewünschte Anzhal Tickets welche gekauft werden sollten
+     * @param kategorie	Die gewünschte Ticketkategorie
+     */
     public void kaufeTickets(int anzahl, int kategorie)
     {
         boolean verkauft = false;
@@ -49,10 +59,16 @@ public class Event
         
         if(!verkauft)
         {
-            System.out.println("Die gew√ºnschte Kategorie hat noch keine Tickets");
+            System.out.println("Die gewünschte Kategorie hat noch keine Tickets verkauft");
         }
     }
     
+    /**
+     * Erstellt einen neuen Künstler oder Gruppe.
+     * 
+     * @param bezeichnung	Name der Gruppe, des Künstlers
+     * @param gage			Verdienst des / der Künstler
+     */
     public void setKuenstler(String bezeichnung, int gage)
     {
         kuenstler = new Kuenstler(bezeichnung, gage);
