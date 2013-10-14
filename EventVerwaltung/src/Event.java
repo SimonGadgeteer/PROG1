@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * enthaelt. Zusaetzlich koennen verschiedene Ticketkategorien mit einer individuellen Anzahl und Preis
  * definiert werden.
  * 
- * @author Dave Kramer, Simon Black 
+ * @author Dave Kramer, Simon Schwarz 
  * @version 0.3a
  */
 public class Event
@@ -15,7 +15,7 @@ public class Event
    ArrayList<Ticket> alleTickets = new ArrayList<Ticket>();
 
     /**
-     * Constructor for objects of class Event
+     * Erstellt einen neuen Event ohne Parameter. Tickets und KŸnstler kšnnen im Nachhinen mittels setter-Methoden gesetzt werden.
      */
     public Event()
     {
