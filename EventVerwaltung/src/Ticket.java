@@ -3,7 +3,7 @@
  * Write a description of class Ticket here.
  * 
  * @author Dave Kramer, Simon Schwarz
- * @version 03.pre Alpha
+ * @version 0.3a
  */
 public class Ticket
 {
@@ -14,7 +14,7 @@ public class Ticket
 
     /**
      * Constructor for objects of class Ticket
-     * @param   kategorie   1 = VIP-Tickets, 2 = Tribünen-Tickets, 3 = Innenraum-Tickets
+     * @param   kategorie   1 = VIP-Tickets, 2 = Tribuene-Tickets, 3 = Innenraum-Tickets
      */
     public Ticket(int kategorie, int preis, int anzahl)
     {
@@ -24,7 +24,7 @@ public class Ticket
         }
         else
         {
-            System.out.println(anzahl+" Keine gültige Ticketkategorie");
+            System.out.println(anzahl+" Keine gueltige Ticketkategorie");
         }
         
         ticketPreis = preis;
@@ -34,13 +34,13 @@ public class Ticket
     /**
      * An example of a method - replace this comment with your own
      * 
-     * @param  anzahl   Anzahl gewünschter Tickets
+     * @param  anzahl   Anzahl gewuenschter Tickets
      */
     public void ticketVerkauf(int anzahl)
     {
-        if((anzahlTicketsGesamt - (anzahlVerkaufteTickets + anzahl) >= 0))
+        if(anzahlTicketsGesamt - anzahlVerkaufteTickets + anzahl >= 0)
         {
-            anzahlVerkaufteTickets = anzahlVerkaufteTickets + anzahl;
+            anzahlVerkaufteTickets += anzahl;
             System.out.println(anzahl+" Tickets der Kategorie "+ticketKategorie+" wurden gerade verkauft! :-)");
         }
         else
@@ -65,12 +65,27 @@ public class Ticket
         }
         else
         {
-            return "keine gültige Kategorie";
+            return "keine gueltige Kategorie";
         }
     }
     
     public int getTicketNr()
     {
         return ticketKategorie;
+    }
+    
+    public int getTicketAnzahl()
+    {
+    	return anzahlTicketsGesamt;
+    }
+    
+    public int getTicketVerkauftAnzahl()
+    {
+    	return anzahlVerkaufteTickets;
+    }
+    
+    public int getTicketPreis()
+    {
+    	return ticketPreis;
     }
 }

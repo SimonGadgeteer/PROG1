@@ -2,8 +2,8 @@
 /**
  * Write a description of class Kuenstler here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Dave Kramer, Simon Schwarz 
+ * @version 0.3a
  */
 public class Kuenstler
 {
@@ -16,15 +16,20 @@ public class Kuenstler
         gageFr = gage;
     }
 
-    public void setzeKuenstler(String bezeichnung, int gage)
+    public void setKuenstler(String bezeichnung, int gage)
     {
         bezeichnungKuenstler = bezeichnung;
         gageFr = gage;
     }
 
-    public void ausgabeKuenstlerInfo()
+    public String getKuenstlerName()
     {
-        System.out.println("Kuenstler: " + bezeichnungKuenstler + ", Gage: CHF " + gageFr);
+        return bezeichnungKuenstler;
+    }
+    
+    public int getKuenstlerGage()
+    {
+    	return gageFr;
     }
 
 }
