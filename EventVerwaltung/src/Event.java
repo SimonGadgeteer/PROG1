@@ -28,7 +28,7 @@ public class Event
     	kuenstler = new Kuenstler(kuenstlerBezeichnung, kuenstlerGage);
     	for(int i = 0; i <  ticketKategorien.length; i++)
     	{
-    		ticket = new Ticket(ticketKategorien[i], ticketAnzahl[i], ticketPreise[i]);
+    		ticket = new Ticket(ticketKategorien[i], ticketPreise[i], ticketAnzahl[i]);
     		alleTickets.add(ticket);
     	}
     }
@@ -105,7 +105,7 @@ public class Event
     	int ticketGesamtEinnahmen = 0;
     	if(kuenstler == null || ticket == null)
     	{
-    	    System.out.println("Es wurden noch nicht alle benštigten Angaben eingetragen");
+    	    System.out.println("Es wurden noch nicht alle benoetigten Angaben eingetragen");
     	}
     	else
     	{
