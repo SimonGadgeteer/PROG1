@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * definiert werden.
  * 
  * @author Dave Kramer, Simon Schwarz 
- * @version 0.3a
+ * @version 0.5
  */
 
 public class Event
@@ -14,21 +14,22 @@ public class Event
    Kuenstler kuenstler;
    Ticket ticket;
    ArrayList<Ticket> alleTickets = new ArrayList<Ticket>();
-   int ticketKategorien[];
+   //int ticketKategorien[];
 
     public Event(String kuenstlerBezeichnung, int kuenstlerGage,
     		int ticketAnzahlKategorie1, int ticketPreisKategorie1,
     		int ticketAnzahlKategorie2, int ticketPreisKategorie2,
     		int ticketAnzahlKategorie3, int ticketPreisKategorie3)
     {  
-    	int ticketKategorien[] = {1, 2, 3};
-    	int ticketAnzahl[] = {ticketAnzahlKategorie3, ticketAnzahlKategorie3, ticketAnzahlKategorie3};
-    	int ticketPreise[] = {ticketPreisKategorie3, ticketPreisKategorie3, ticketPreisKategorie3};
-    	
+    	int ticketKategorien[] = new int[]{1, 2, 3};
+    	int ticketAnzahl[] = new int[]{ticketAnzahlKategorie1, ticketAnzahlKategorie2, ticketAnzahlKategorie3};
+    	int ticketPreise[] = new int[]{ticketPreisKategorie1, ticketPreisKategorie2, ticketPreisKategorie3};
+    
     	kuenstler = new Kuenstler(kuenstlerBezeichnung, kuenstlerGage);
-    	for(int i = 0; i < ticketKategorien.length; i++)
+    	for(int i = 0; i <  ticketKategorien.length; i++)
     	{
-    		setTicket(ticketKategorien[i], ticketAnzahl[i], ticketPreise[i]);
+    		ticket = new Ticket(ticketKategorien[i], ticketAnzahl[i], ticketPreise[i]);
+    		alleTickets.add(ticket);
     	}
     }
     
@@ -42,7 +43,7 @@ public class Event
 
 
     /**
-     * Erstellt einen neue Ticketkategorie
+     * Erstellt einen neue Ticketkategorie sofern es noch nicht drei gibt
      * 
      * @param kategorie	Ticketkategorie
      * @param preis		Preis der Tickets in dieser Kategorie
@@ -69,7 +70,7 @@ public class Event
      */
     public void kaufeTickets(int anzahl, int kategorie)
     {
-        boolean verkauft = false;
+        boolean vorhanden = false;
         
         for(int i = 0; i < alleTickets.size(); i++)
         {
@@ -78,13 +79,13 @@ public class Event
             if(tempTicket.getTicketNr() == kategorie)
             {
                 alleTickets.get(i).ticketVerkauf(anzahl);
-                verkauft = true;
+                vorhanden = true;
             }
         }
         
-        if(!verkauft)
+        if(!vorhanden)
         {
-            System.out.println("Die gewuenschte Kategorie hat noch keine Tickets verkauft");
+            System.out.println("Die gewuenschte Kategorie hat noch keine Tickets");
         }
     }
     
@@ -102,17 +103,24 @@ public class Event
     public void outputEvent()
     {
     	int ticketGesamtEinnahmen = 0;
-    	String outputString = "Kuenstler: " + kuenstler.getKuenstlerName() + ", Gage CHF " + kuenstler.getKuenstlerGage() + "\n";
-    	
-    	for(Ticket ticket: alleTickets)
+    	if(kuenstler == null || ticket == null)
     	{
-    		outputString += ticket.getTicketKategorieName() + ": " +
-    				ticket.getTicketVerkauftAnzahl() + " von " + ticket.getTicketAnzahl() + " verkauft" +
-    				", Einnahmen: CHF " + (ticket.getTicketVerkauftAnzahl() * ticket.getTicketAnzahl()) + "\n";
-    		ticketGesamtEinnahmen += ticket.getTicketVerkauftAnzahl() * ticket.getTicketPreis();
+    	    System.out.println("Es wurden noch nicht alle benštigten Angaben eingetragen");
     	}
-    	outputString += "Gesamteinnahmen: " + ticketGesamtEinnahmen;
-    	outputString += "\nGewinn: " + (ticketGesamtEinnahmen - kuenstler.getKuenstlerGage());
-    	System.out.println(outputString);
+    	else
+    	{
+        	String outputString = "Kuenstler: " + kuenstler.getKuenstlerName() + ", Gage CHF " + kuenstler.getKuenstlerGage() + "\n";
+        	
+        	for(Ticket ticket: alleTickets)
+        	{
+        		outputString += ticket.getTicketKategorieName() + ": " +
+        				ticket.getTicketVerkauftAnzahl() + " von " + ticket.getTicketAnzahl() + " verkauft" +
+        				", Einnahmen: CHF " + (ticket.getTicketVerkauftAnzahl() * ticket.getTicketAnzahl()) + "\n";
+        		ticketGesamtEinnahmen += ticket.getTicketVerkauftAnzahl() * ticket.getTicketPreis();
+        	}
+        	outputString += "Gesamteinnahmen: " + ticketGesamtEinnahmen;
+        	outputString += "\nGewinn: " + (ticketGesamtEinnahmen - kuenstler.getKuenstlerGage());
+        	System.out.println(outputString);
+        }
     }
 }

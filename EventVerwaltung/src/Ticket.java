@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Ticket here.
+ * Kreiert ein Ticket gemäss User-Wunsch
  * 
  * @author Dave Kramer, Simon Schwarz
- * @version 0.3a
+ * @version 0.5
  */
 public class Ticket
 {
@@ -13,7 +13,7 @@ public class Ticket
     private int ticketPreis;
 
     /**
-     * Constructor for objects of class Ticket
+     * Erstellt ein neues Ticket der gewünschten Kategorie, sofern dies zu einer der drei bestimmten Kategorien gehört.
      * @param   kategorie   1 = VIP-Tickets, 2 = Tribuene-Tickets, 3 = Innenraum-Tickets
      */
     public Ticket(int kategorie, int preis, int anzahl)
@@ -32,13 +32,14 @@ public class Ticket
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Verkauft eine gewünschte Anzahl Tickets, sofern noch genügend Tickets vorhanden sind.
      * 
      * @param  anzahl   Anzahl gewuenschter Tickets
      */
     public void ticketVerkauf(int anzahl)
     {
-        if(anzahlTicketsGesamt - anzahlVerkaufteTickets + anzahl >= 0)
+        System.out.println("Gesamt: "+anzahlTicketsGesamt+", verkäuft: "+ anzahlVerkaufteTickets+", gewünscht: "+anzahl);
+        if((anzahlTicketsGesamt - (anzahlVerkaufteTickets + anzahl)) >= 0)
         {
             anzahlVerkaufteTickets += anzahl;
             System.out.println(anzahl+" Tickets der Kategorie "+ticketKategorie+" wurden gerade verkauft! :-)");
@@ -49,6 +50,11 @@ public class Ticket
         }
     }
     
+    /**
+     * Gibt den aktuellen Ticket-Kategorie-Namen zurück
+     * 
+     * @return  String  Ticket-Kategorie
+     */
     public String getTicketKategorieName()
     {
         if(ticketKategorie == 1)
@@ -69,23 +75,43 @@ public class Ticket
         }
     }
     
+    /**
+     * Gibt die TicketKategorie als Nummer zurück
+     * 
+     * @return  int TicketKategorie
+     */
     public int getTicketNr()
     {
         return ticketKategorie;
     }
     
+    /**
+     * Gibt die gesamte Anzahl der Tickets zurück
+     * 
+     * @return  int Anzahl Tickets welche verfügbar waren
+     */
     public int getTicketAnzahl()
     {
-    	return anzahlTicketsGesamt;
+        return anzahlTicketsGesamt;
     }
     
+    /**
+     * Gibt die Anzahl verkauften Tickets zurück
+     * 
+     * @return  int Anzahl Tickets verkauft
+     */
     public int getTicketVerkauftAnzahl()
     {
-    	return anzahlVerkaufteTickets;
+        return anzahlVerkaufteTickets;
     }
     
+    /**
+     * Gibt Preis für die Tickets zurück
+     * 
+     * @return  int Ticketpreis
+     */
     public int getTicketPreis()
     {
-    	return ticketPreis;
+        return ticketPreis;
     }
 }
