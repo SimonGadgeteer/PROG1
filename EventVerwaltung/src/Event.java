@@ -115,7 +115,7 @@ public class Event
         	{
         		outputString += ticket.getTicketKategorieName() + ": " +
         				ticket.getTicketVerkauftAnzahl() + " von " + ticket.getTicketAnzahl() + " verkauft" +
-        				", Einnahmen: CHF " + (ticket.getTicketVerkauftAnzahl() * ticket.getTicketAnzahl()) + "\n";
+        				", Einnahmen: CHF " + (ticket.getTicketVerkauftAnzahl() * ticket.getTicketPreis()) + "\n";
         		ticketGesamtEinnahmen += ticket.getTicketVerkauftAnzahl() * ticket.getTicketPreis();
         	}
         	outputString += "Gesamteinnahmen: " + ticketGesamtEinnahmen;
