@@ -15,7 +15,7 @@ public class SnakeSpiel {
   private Tuer tuer;
   private Spielfeld spielfeld;
   //private Point goldStueck;
-  private ArrayList<Point> goldStuecke;
+  private ArrayList<Point> goldStuecke = new ArrayList();
   private boolean spielLaeuft = true;
 
   /**
@@ -50,7 +50,7 @@ public class SnakeSpiel {
     tuer = new Tuer(0, 5);
     spielfeld = new Spielfeld(40, 10);
    // goldStueck = new Point(20, 2);
-    goldStuecke = new ArrayList();				setAnzahlGoldstuecke(anzahlMuenzen);
+    setAnzahlGoldstuecke(anzahlMuenzen);
     schlange = new Schlange(30, 2);
   }
 
@@ -76,13 +76,38 @@ public class SnakeSpiel {
     }
   }
   
-  private boolean istEinGoldstueckAufPunkt(Point punkt) {
-    return goldStueck != null && goldStueck.equals(punkt);
+  private boolean istEinGoldstueckAufPunkt(Point punkt)
+  {
+	  boolean goldstueckDort = false;
+	  
+	  for(int i = 0; i < goldStuecke.size(); i++)
+	  {
+		  if(goldStuecke.get(i).equals(punkt))
+		  {
+			goldstueckDort = true;  
+		  }
+	  }
+	  
+	  return goldstueckDort;
+   // return goldStueck != null && goldStueck.equals(punkt);
   }
   
   private void ueberpruefeSpielstatus() {
     if (istEinGoldstueckAufPunkt(schlange.gibPosition())) {
-      goldStueck = null;
+    	//iterator while remove schlange.gibPoistion
+    	Iterator<Point> it = goldStuecke.iterator();
+    	
+    	while(it.hasNext())
+    	{
+    		if(it.next().equals(schlange.gibPosition()))
+    		{
+    			it.remove();
+    		}
+    	}
+    	
+   //   goldStueck = null;
+    	
+    	
       schlange.wachsen();
       System.out.println("Goldstueck eingesammelt.");
     }
@@ -97,8 +122,17 @@ public class SnakeSpiel {
   }
   
   private boolean istGewonnen() {
-    return goldStueck == null && 
-      tuer.istAufPunkt(schlange.gibPosition());
+	  
+	  boolean goldStueck = false;
+	  
+	  if(goldStuecke.size() != 0)
+	  {
+		   goldStueck = true;
+	  }
+	  
+	  return goldStueck  &&  tuer.istAufPunkt(schlange.gibPosition());
+	  
+
   }
 
   private boolean istVerloren() {
@@ -114,12 +148,15 @@ public class SnakeSpiel {
   private void setAnzahlGoldstuecke(int anzahl)
   {
 	  int anzahlGoldstuecke =  anzahl;
-	  Iterator<Point> it = goldStuecke.iterator();
+	
+	  //kein iterator! mach for schleife mit zuweisung
+	  //Iterator<Point> it = goldStuecke.iterator();
 	  Point tempPoint = new Point();
 	  
-	  while(it.hasNext())
+	  for(int i = 0; i < anzahl; i++)
 	  {
 		  tempPoint = spielfeld.erzeugeZufallspunktInnerhalb();
+		  System.out.println("Koordinate fŸr: "+i+" --> "+tempPoint);
 		  goldStuecke.add(tempPoint);
 	  }
   }
