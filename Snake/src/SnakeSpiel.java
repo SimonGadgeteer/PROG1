@@ -44,6 +44,7 @@ public class SnakeSpiel {
   
   public static void main(String[] args) {
     new SnakeSpiel().spielen();
+   // new SnakeSpiel().spielenMitGold(100);
   }
 
   private void spielInitialisieren(int anzahlMuenzen) {
@@ -123,16 +124,14 @@ public class SnakeSpiel {
   
   private boolean istGewonnen() {
 	  
-	  boolean goldStueck = false;
+	  boolean goldStueck = true;
 	  
 	  if(goldStuecke.size() != 0)
 	  {
-		   goldStueck = true;
+		   goldStueck = false;
 	  }
 	  
 	  return goldStueck  &&  tuer.istAufPunkt(schlange.gibPosition());
-	  
-
   }
 
   private boolean istVerloren() {
@@ -149,8 +148,6 @@ public class SnakeSpiel {
   {
 	  int anzahlGoldstuecke =  anzahl;
 	
-	  //kein iterator! mach for schleife mit zuweisung
-	  //Iterator<Point> it = goldStuecke.iterator();
 	  Point tempPoint = new Point();
 	  
 	  for(int i = 0; i < anzahl; i++)
