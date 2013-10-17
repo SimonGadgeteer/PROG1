@@ -1,4 +1,6 @@
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -12,14 +14,27 @@ public class SnakeSpiel {
   private Schlange schlange;
   private Tuer tuer;
   private Spielfeld spielfeld;
-  private Point goldStueck;
+  //private Point goldStueck;
+  private ArrayList<Point> goldStuecke;
   private boolean spielLaeuft = true;
 
   /**
    * Startet das Spiel.
    */
   public void spielen() {
-    spielInitialisieren();
+    spielInitialisieren(10);
+    while (spielLaeuft) {
+      zeichneSpielfeld();
+      ueberpruefeSpielstatus();
+      fuehreSpielzugAus();
+    }   
+  }
+  
+  /**
+   * Startet das Spiel.
+   */
+  public void spielenMitGold(int anzahlMuenzen) {
+    spielInitialisieren(anzahlMuenzen);
     while (spielLaeuft) {
       zeichneSpielfeld();
       ueberpruefeSpielstatus();
@@ -31,10 +46,11 @@ public class SnakeSpiel {
     new SnakeSpiel().spielen();
   }
 
-  private void spielInitialisieren() {
+  private void spielInitialisieren(int anzahlMuenzen) {
     tuer = new Tuer(0, 5);
     spielfeld = new Spielfeld(40, 10);
-    goldStueck = new Point(20, 2);
+   // goldStueck = new Point(20, 2);
+    goldStuecke = new ArrayList();				setAnzahlGoldstuecke(anzahlMuenzen);
     schlange = new Schlange(30, 2);
   }
 
@@ -93,6 +109,19 @@ public class SnakeSpiel {
   private void fuehreSpielzugAus() {
     char eingabe = liesZeichenVonTastatur();
     schlange.bewege(eingabe);
+  }
+  
+  private void setAnzahlGoldstuecke(int anzahl)
+  {
+	  int anzahlGoldstuecke =  anzahl;
+	  Iterator<Point> it = goldStuecke.iterator();
+	  Point tempPoint = new Point();
+	  
+	  while(it.hasNext())
+	  {
+		  tempPoint = spielfeld.erzeugeZufallspunktInnerhalb();
+		  goldStuecke.add(tempPoint);
+	  }
   }
 
   private char liesZeichenVonTastatur() {
