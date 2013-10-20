@@ -43,8 +43,8 @@ public class SnakeSpiel {
   }
   
   public static void main(String[] args) {
-    new SnakeSpiel().spielen();
-   // new SnakeSpiel().spielenMitGold(100);
+    //new SnakeSpiel().spielen();
+    new SnakeSpiel().spielenMitGold(100);
   }
 
   private void spielInitialisieren(int anzahlMuenzen) {
