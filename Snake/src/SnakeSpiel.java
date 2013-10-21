@@ -1,6 +1,5 @@
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -15,7 +14,7 @@ public class SnakeSpiel {
   private Tuer tuer;
   private Spielfeld spielfeld;
   //private Point goldStueck;
-  private ArrayList<Point> goldStuecke = new ArrayList();
+  private ArrayList<Goldstueck> goldStuecke = new ArrayList<Goldstueck>();
   private boolean spielLaeuft = true;
 
   /**
@@ -79,37 +78,31 @@ public class SnakeSpiel {
   
   private boolean istEinGoldstueckAufPunkt(Point punkt)
   {
-	  boolean goldstueckDort = false;
-	  
-	  for(int i = 0; i < goldStuecke.size(); i++)
+	  for(Goldstueck goldstueck : goldStuecke)
 	  {
-		  if(goldStuecke.get(i).equals(punkt))
+		  if(goldstueck.getGoldKoordinate().equals(punkt))
 		  {
-			goldstueckDort = true;  
+			return true;
 		  }
 	  }
 	  
-	  return goldstueckDort;
+	  return false;
+
    // return goldStueck != null && goldStueck.equals(punkt);
   }
   
   private void ueberpruefeSpielstatus() {
     if (istEinGoldstueckAufPunkt(schlange.gibPosition())) {
-    	//iterator while remove schlange.gibPoistion
-    	Iterator<Point> it = goldStuecke.iterator();
     	
-    	while(it.hasNext())
+    	for(int i = 0; i < goldStuecke.size(); i++)
     	{
-    		if(it.next().equals(schlange.gibPosition()))
+    		if(goldStuecke.get(i).getGoldKoordinate().equals(schlange.gibPosition()))
     		{
-    			it.remove();
+    		    schlange.wachsen(goldStuecke.get(i).getGoldWert());
+    			goldStuecke.remove(i);
+    			break;
     		}
     	}
-    	
-   //   goldStueck = null;
-    	
-    	
-      schlange.wachsen();
       System.out.println("Goldstueck eingesammelt.");
     }
     if (istVerloren()){
@@ -146,20 +139,19 @@ public class SnakeSpiel {
   
   private void setAnzahlGoldstuecke(int anzahl)
   {
-	  int anzahlGoldstuecke =  anzahl;
-	
-	  Point tempPoint = new Point();
+	  Goldstueck goldStueck;
 	  
 	  for(int i = 0; i < anzahl; i++)
 	  {
-		  tempPoint = spielfeld.erzeugeZufallspunktInnerhalb();
-		  System.out.println("Koordinate fŸr: "+i+" --> "+tempPoint);
-		  goldStuecke.add(tempPoint);
+		  goldStueck = new Goldstueck(spielfeld.erzeugeZufallspunktInnerhalb());
+		  System.out.println("Koordinate fuer: "+i+" --> " + goldStueck.getGoldKoordinate());
+		  goldStuecke.add(goldStueck);
 	  }
   }
 
   private char liesZeichenVonTastatur() {
-    Scanner scanner = new Scanner(System.in);
+	@SuppressWarnings("resource")
+	Scanner scanner = new Scanner(System.in);
     char konsolenEingabe = scanner.next().charAt(0);
     return konsolenEingabe;
   }

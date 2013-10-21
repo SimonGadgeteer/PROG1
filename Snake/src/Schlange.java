@@ -92,9 +92,12 @@ public class Schlange {
   /**
    * Laesst die Schlange um eine Einheit laenger werden.
    */
-  public void wachsen() {
-    Point schwanz = schlange.get(0);
-    schlange.add(0, new Point(schwanz.x, schwanz.y));
+  public void wachsen(int veraenderungGroesse) {
+	for (int i = 0; i < veraenderungGroesse; i++)
+	{
+		Point schwanz = schlange.get(0);
+    	schlange.add(0, new Point(schwanz.x+i, schwanz.y));
+	}
   }
 
   /**
