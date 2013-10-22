@@ -95,14 +95,17 @@ public class Schlange {
   public void wachsen(int veraenderungGroesse) {
 	for (int i = 0; i < veraenderungGroesse; i++)
 	{
-		Point schwanz = schlange.get(0);
-		if (schwanz.x < kopf().x)
+		if (schlange.size() <= 1)
 		{
-			schlange.add(0, new Point(schwanz.x-1, schwanz.y));
+			schlange.add(0, new Point(schlange.get(0).x, schlange.get(0).y));
 		}
-		else
+		else if (schlange.get(0).x < schlange.get(1).x)
 		{
-			schlange.add(0, new Point(schwanz.x+1, schwanz.y));
+			schlange.add(0, new Point(schlange.get(0).x+-1, schlange.get(0).y));
+		}
+		else if (schlange.get(0).x > schlange.get(1).x)
+		{
+			schlange.add(0, new Point(schlange.get(0).x+1, schlange.get(0).y));
 		}
 	}
   }
