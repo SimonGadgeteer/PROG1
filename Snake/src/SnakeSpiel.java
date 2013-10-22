@@ -8,6 +8,9 @@ import java.util.Scanner;
  * Ziel dieses Spiels ist es alle Goldstuecke einzusammeln und 
  * die Tuer zu erreichen, ohne sich selber zu beissen oder in 
  * die Spielfeldbegrenzung reinzukriechen. 
+ * 
+ * @autor		Dave Kramer, Simon Schwarz
+ * @version		0.75
  */
 public class SnakeSpiel {
   private Schlange schlange;
@@ -18,7 +21,7 @@ public class SnakeSpiel {
   private boolean spielLaeuft = true;
 
   /**
-   * Startet das Spiel.
+   * Startet das Spiel mit 10 Goldmünzen.
    */
   public void spielen() {
     spielInitialisieren(10);
@@ -30,7 +33,7 @@ public class SnakeSpiel {
   }
   
   /**
-   * Startet das Spiel.
+   * Startet das Spiel mit einer individuellen Anzahl Goldmünzen.
    */
   public void spielenMitGold(int anzahlMuenzen) {
     spielInitialisieren(anzahlMuenzen);
@@ -46,6 +49,11 @@ public class SnakeSpiel {
     new SnakeSpiel().spielenMitGold(100);
   }
 
+  /**
+   * Bereitet das Spiel vor und setzt die Variablen auf den Startwert
+   * 
+   * @param anzahlMuenzen	Mit wievielen Münzen soll das Spiel gestartet werden
+   */
   private void spielInitialisieren(int anzahlMuenzen) {
     tuer = new Tuer(0, 5);
     spielfeld = new Spielfeld(40, 10);
@@ -54,6 +62,9 @@ public class SnakeSpiel {
     schlange = new Schlange(30, 2);
   }
 
+  /**
+   * Zeichnet ein neues Spielfeld, die Schlange, die Tür und die Goldmünzen
+   */
   private void zeichneSpielfeld() {
     char ausgabeZeichen;
     for (int y = 0; y < spielfeld.gibHoehe(); y++) {
@@ -76,6 +87,13 @@ public class SnakeSpiel {
     }
   }
   
+  /**
+   * Prüft ob sich ein Goldstück auf dem aktuellen Punkt des Spielfelds befindet. Falls dem so ist
+   * wird True zurück gegeben.
+   * 
+   * @param punkt
+   * @return	True falls Münze vorhanden. false falls nicht
+   */
   private boolean istEinGoldstueckAufPunkt(Point punkt)
   {
 	  for(Goldstueck goldstueck : goldStuecke)
@@ -91,17 +109,20 @@ public class SnakeSpiel {
    // return goldStueck != null && goldStueck.equals(punkt);
   }
   
+  /**
+   * Überprüft laufend ob die Schlange gerade eine Münze einsammelt, stirbt oder gewinnt.
+   */
   private void ueberpruefeSpielstatus() {
     if (istEinGoldstueckAufPunkt(schlange.gibPosition())) {
     	
     	for(int i = 0; i < goldStuecke.size(); i++)
     	{
-    		if(goldStuecke.get(i).getGoldKoordinate().equals(schlange.gibPosition()))
-    		{
+    /*		if(goldStuecke.get(i).getGoldKoordinate().equals(schlange.gibPosition()))
+    		{*/
     		    schlange.wachsen(goldStuecke.get(i).getGoldWert());
     			goldStuecke.remove(i);
     			break;
-    		}
+    		//}
     	}
       System.out.println("Goldstueck eingesammelt.");
     }
@@ -115,6 +136,14 @@ public class SnakeSpiel {
     }
   }
   
+  /**
+   * Überprüft ob die Siegesbedingungen erfüllt sind.
+   * Siegesbedingungen sind:
+   * - Schlange auf Tür
+   * - alle Münzen gefressen
+   * 
+   * @return	true = gewonnen, false = noch nicht fertig
+   */
   private boolean istGewonnen() {
 	  
 	  boolean goldStueck = true;
@@ -127,16 +156,29 @@ public class SnakeSpiel {
 	  return goldStueck  &&  tuer.istAufPunkt(schlange.gibPosition());
   }
 
+  /**
+   * Überprüft ob das Spiel verloren ist.
+   * 
+   * @return	true = verloren, false = weiterspielen
+   */
   private boolean istVerloren() {
     return schlange.istKopfAufKoerper() || 
          !spielfeld.istPunktInSpielfeld(schlange.gibPosition());
   }
   
+  /**
+   * Liesst die nächste Anweisung vom User und bewegt die Schlange.
+   */
   private void fuehreSpielzugAus() {
     char eingabe = liesZeichenVonTastatur();
     schlange.bewege(eingabe);
   }
   
+  /**
+   * Erzeugt neue Goldstücke-Objekte für die gewünschte Anzahl Goldmünzen
+   * 
+   * @param anzahl	wieviele Objekte sollen erstellt werden
+   */
   private void setAnzahlGoldstuecke(int anzahl)
   {
 	  Goldstueck goldStueck;
@@ -149,6 +191,10 @@ public class SnakeSpiel {
 	  }
   }
 
+  /**
+   * Liest den User-Input von der Tastatur und gibt das gelesene Zeichen zurück.
+   * @return
+   */
   private char liesZeichenVonTastatur() {
 	@SuppressWarnings("resource")
 	Scanner scanner = new Scanner(System.in);
