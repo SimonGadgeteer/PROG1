@@ -96,7 +96,14 @@ public class Schlange {
 	for (int i = 0; i < veraenderungGroesse; i++)
 	{
 		Point schwanz = schlange.get(0);
-    	schlange.add(0, new Point(schwanz.x+1, schwanz.y));
+		if (schwanz.x < kopf().x)
+		{
+			schlange.add(0, new Point(schwanz.x-1, schwanz.y));
+		}
+		else
+		{
+			schlange.add(0, new Point(schwanz.x+1, schwanz.y));
+		}
 	}
   }
 
