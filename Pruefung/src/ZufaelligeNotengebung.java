@@ -22,7 +22,6 @@ public class ZufaelligeNotengebung {
   }
 
   private double generiereZufaelligePruefungsnote() {
-    // TODO: Fehlenden Code hier einfuegen
-    return 0;
+	return (new Random().nextInt(10) + 2) / 2.0;
   }
 }

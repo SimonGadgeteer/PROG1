@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Bietet Funktionalitaeten zum Speichern von Pruefungsergebnissen von einer
@@ -13,7 +14,7 @@ public class Pruefungsverwaltung {
    * @param ergebnis Das Pruefungsergebnis.
    */
 	
-	HashMap<String, String> studentenErgebnis = new HashMap<String, String>();
+	HashSet<String> studentenErgebnis = new HashSet<String>();
 	HashMap<Double, String> dictionaryDoubleText = new HashMap<Double, String>();
 	
 	public Pruefungsverwaltung () {
@@ -48,7 +49,10 @@ public class Pruefungsverwaltung {
    */
   	
   public void druckeAntworttexte() {
-	  
+	  for (String studentErgebnis : studentenErgebnis)
+	  {
+		  System.out.println(studentErgebnis);
+	  }
   }
 
   private double rundeAufHalbeNote(double note) {
@@ -61,9 +65,9 @@ public class Pruefungsverwaltung {
 	  
 	  if (ergebnis.getNote() < 4.0)
 	  {
-		 antwortText = "Sie haben an der Pruefung eine " +
+		 antwortText =  ergebnis.getStudent() + ", Sie haben an der Pruefung eine " +
 				 		rundeAufHalbeNote(ergebnis.getNote()) + " (" +
-				 		dictionaryDoubleText.get(rundeAufHalbeNote(ergebnis.getNote())) + ")" +
+				 		dictionaryDoubleText.get(rundeAufHalbeNote(ergebnis.getNote())) + ") " +
 				 		"erzielt und sind somit durchgefallen!";
 	  }
 	  else if(ergebnis.getNote() >= 4.0)
@@ -75,6 +79,6 @@ public class Pruefungsverwaltung {
 				 		" erzielt und somit bestanden!";
 	  }
 	  
-	  studentenErgebnis.put(ergebnis.getStudent(), antwortText);
+	  studentenErgebnis.add(antwortText);
   }
 }
