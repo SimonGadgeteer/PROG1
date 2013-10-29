@@ -4,80 +4,80 @@ import java.util.Random;
 /**
  * Mit dem Messkonduktor kann die Zeit fuer das Erzeugen und Sortieren einer
  * vorgegebenen Anzahl Zusfallszahlen gemessen werden. Die Anzahl Zufallszahlen
- * ist konfigurierbar. 
+ * ist konfigurierbar.
  */
 public class Messkonduktor {
-  private int anzahlZufallszahlen;
+	private int anzahlZufallszahlen;
 
-  /**
-   * Erstellt einen Messkonduktor.
-   * 
-   * @param anzahlZufallszahlen Anzahl Zufallszahlen pro Messung.
-   */
-  public Messkonduktor(int anzahlZufallszahlen) {
-    this.anzahlZufallszahlen = anzahlZufallszahlen;
-  }
+	/**
+	 * Erstellt einen Messkonduktor.
+	 * 
+	 * @param anzahlZufallszahlen
+	 *            Anzahl Zufallszahlen pro Messung.
+	 */
+	public Messkonduktor(int anzahlZufallszahlen) {
+		this.anzahlZufallszahlen = anzahlZufallszahlen;
+	}
 
-  /**
-   * Fuehrt eine Anzahl Messungen durch. Die Anzahl ist bestimmt durch die
-   * Laenge des uebergeben Arrays. Eine einzelne Messung besteht aus dem
-   * Generieren und Sortieren der Zufallszahlen.
-   * 
-   * @param messResultate Der Array fuer die Messresultate.
-   * @return Messresultate mit Zeitdauer in ms.
-   */
-  public int[] messungenDurchfuehren(int[] messResultate) {
-    for (int i = 0; i < messResultate.length; i++) {
-      messResultate[i] = einzelneMessungDurchfuehren();
-    }
+	/**
+	 * Fuehrt eine Anzahl Messungen durch. Die Anzahl ist bestimmt durch die
+	 * Laenge des uebergeben Arrays. Eine einzelne Messung besteht aus dem
+	 * Generieren und Sortieren der Zufallszahlen.
+	 * 
+	 * @param messResultate
+	 *            Der Array fuer die Messresultate.
+	 * @return Messresultate mit Zeitdauer in ms.
+	 */
+	public int[] messungenDurchfuehren(int[] messResultate) {
+		for (int i = 0; i < messResultate.length; i++) {
+			messResultate[i] = einzelneMessungDurchfuehren();
+		}
 
-    return messResultate;
-  }
-  
-  public int[][] messungenDurchfuehrenXtended(int[][] messungen) 
-  {
+		return messResultate;
+	}
 
-	  for(int ii = 0; ii < messungen.length; ii++)
-	  {
-		  for (int i = 0; i < messungen[ii].length; i++) {
-		      messungen[ii][i] = bestimmteMessungDurchfuehren(messungen[ii][i]);
-		    }
-	  }
+	public double[][] messungenDurchfuehrenXtended(double[][] messungen) {
 
-	    return messungen;
-	  }
+		for (int ii = 0; ii < messungen.length; ii++) {
+			for (int i = 0; i < messungen[ii].length; i++) {
+				messungen[ii][i] = bestimmteMessungDurchfuehren(messungen[ii][i]);
+			}
+		}
 
-  private int einzelneMessungDurchfuehren() {
-    long zeitVorher = System.currentTimeMillis();
+		return messungen;
+	}
 
-    int[] zufallszahlen = zufallszahlenGenerieren();
-    Arrays.sort(zufallszahlen);
+	private int einzelneMessungDurchfuehren() {
+		long zeitVorher = System.currentTimeMillis();
 
-    long zeitDanach = System.currentTimeMillis();
-    int zeitdauerInMs = (int) (zeitDanach - zeitVorher);
+		int[] zufallszahlen = zufallszahlenGenerieren();
+		Arrays.sort(zufallszahlen);
 
-    return zeitdauerInMs;
-  }
-  
-  private int bestimmteMessungDurchfuehren(int anzahl) {
-	    long zeitVorher = System.currentTimeMillis();
+		long zeitDanach = System.currentTimeMillis();
+		int zeitdauerInMs = (int) (zeitDanach - zeitVorher);
 
-	    int[] zufallszahlen = zufallszahlenGenerieren();
-	    Arrays.sort(zufallszahlen);
+		return zeitdauerInMs;
+	}
 
-	    long zeitDanach = System.currentTimeMillis();
-	    int zeitdauerInMs = (int) (zeitDanach - zeitVorher);
+	private int bestimmteMessungDurchfuehren(double messungen) {
+		long zeitVorher = System.currentTimeMillis();
 
-	    return zeitdauerInMs;
-	  }
+		int[] zufallszahlen = zufallszahlenGenerieren();
+		Arrays.sort(zufallszahlen);
 
-  private int[] zufallszahlenGenerieren() {
-    int[] zufallszahlen = new int[anzahlZufallszahlen];
-    Random zufallszahlenGenerator = new Random();
+		long zeitDanach = System.currentTimeMillis();
+		int zeitdauerInMs = (int) (zeitDanach - zeitVorher);
 
-    for (int i = 0; i < anzahlZufallszahlen; i++) {
-      zufallszahlen[i] = zufallszahlenGenerator.nextInt(100000);
-    }
-    return zufallszahlen;
-  }
+		return zeitdauerInMs;
+	}
+
+	private int[] zufallszahlenGenerieren() {
+		int[] zufallszahlen = new int[anzahlZufallszahlen];
+		Random zufallszahlenGenerator = new Random();
+
+		for (int i = 0; i < anzahlZufallszahlen; i++) {
+			zufallszahlen[i] = zufallszahlenGenerator.nextInt(100000);
+		}
+		return zufallszahlen;
+	}
 }
