@@ -33,6 +33,19 @@ public class Messkonduktor {
 
     return messResultate;
   }
+  
+  public double[][] messungenDurchfuehrenXtended(double[][] messungen) 
+  {
+
+	  for(int ii = 0; ii < messungen.length; ii++)
+	  {
+		  for (int i = 0; i < messungen[ii].length; i++) {
+		      messungen[ii][i] = bestimmteMessungDurchfuehren(messungen[ii][i]);
+		    }
+	  }
+
+	    return messungen;
+  }
 
   private int einzelneMessungDurchfuehren() {
     long zeitVorher = System.currentTimeMillis();
@@ -45,6 +58,18 @@ public class Messkonduktor {
 
     return zeitdauerInMs;
   }
+  
+  private int bestimmteMessungDurchfuehren(double messungen) {
+	    long zeitVorher = System.currentTimeMillis();
+
+	    int[] zufallszahlen = zufallszahlenGenerieren();
+	    Arrays.sort(zufallszahlen);
+
+	    long zeitDanach = System.currentTimeMillis();
+	    int zeitdauerInMs = (int) (zeitDanach - zeitVorher);
+
+	    return zeitdauerInMs;
+	  }
 
   private int[] zufallszahlenGenerieren() {
     int[] zufallszahlen = new int[anzahlZufallszahlen];
