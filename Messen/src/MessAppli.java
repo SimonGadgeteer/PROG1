@@ -8,11 +8,10 @@ import java.util.ArrayList;
  * @version 0.9
  */
 public class MessAppli {
-	private Messkonduktor messkonduktor;
-	private int[] anzahlMessungen;
+	private int anzahlMessungen;
 	private int anzahlMessreihen;
 	private int[][] messSammlung;
-	private double[] messungDurchschnitt;
+	private double messungDurchschnitt;
 	private ArrayList<Messkonduktor> messungenList = new ArrayList<Messkonduktor>();
 
 	/**
@@ -20,8 +19,7 @@ public class MessAppli {
 	 */
 	public void messen(int anzahlMessreihen, int anzahlMessungen) {
 		messSammlung = new int[anzahlMessreihen][anzahlMessungen];
-		messungDurchschnitt = new double[anzahlMessungen];
-		this.anzahlMessungen = new int[anzahlMessungen];
+		this.anzahlMessungen = anzahlMessungen;
 		this.anzahlMessreihen = anzahlMessreihen;
 
 		initialisieren();
@@ -37,7 +35,7 @@ public class MessAppli {
 	private void initialisieren() {
 		for(int i= 0; i < anzahlMessreihen;i++)
 		{
-			messungenList.add(messkonduktor = new Messkonduktor(400000));
+			messungenList.add(new Messkonduktor(400000));
 		}
 	}
 
@@ -48,10 +46,10 @@ public class MessAppli {
 
 		for(int i= 0; i < anzahlMessreihen; i++)
 		{
-			int[] temp = new int[anzahlMessungen.length];
-			temp = messungenList.get(i).messungenDurchfuehren(anzahlMessungen);
+			int[] temp = new int[anzahlMessungen];
+			temp = messungenList.get(i).messungenDurchfuehren(new int[anzahlMessungen]);
 
-				for(int ii = 0; ii < anzahlMessungen.length;ii++)
+				for(int ii = 0; ii < anzahlMessungen;ii++)
 				{
 					messSammlung[i][ii] = temp[ii];
 				}
@@ -78,14 +76,14 @@ public class MessAppli {
 	 */
 	private void berechneUndDruckeMittelwerteMessung() {
 		for (int i = 0; i < messSammlung.length; i++) {
+			messungDurchschnitt = 0;
 			for (int ii = 0; ii < messSammlung[i].length; ii++) {
-				messungDurchschnitt[ii] += messSammlung[i][ii];
+				messungDurchschnitt += messSammlung[i][ii];
 				if (ii == messSammlung[i].length - 1) {
-					System.out
-							.println("Durchschnitt von allen "
+					System.out.println("Durchschnitt von allen "
 									+ (i + 1)
 									+ ". Messungen: "
-									+ (messungDurchschnitt[ii] / messSammlung[i].length));
+									+ (messungDurchschnitt / messSammlung[i].length));
 				}
 			}
 
