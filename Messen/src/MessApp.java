@@ -3,7 +3,7 @@
  * Zufallszahlengenerators zu messen.
  * 
  * @author Dave Kramer, Simon Schwarz
- * @version 0.8
+ * @version 0.9
  */
 public class MessApp {
 	private Messkonduktor messkonduktor;
@@ -36,7 +36,7 @@ public class MessApp {
 	}
 
 	/**
-	 * FŸhrt eine bestimmte Anzahl Messungen durch und speichert die Ergebnisse in ein int[][] Array
+	 * Fuehrt eine bestimmte Anzahl Messungen durch und speichert die Ergebnisse in ein int[][] Array
 	 */
 	private void analyseDurchfuehren() {
 
