@@ -1,6 +1,9 @@
 
 public class Tester {
 
+	/**
+	 * Tester Klasse zum Testen des Codes per Eclipse
+	 */
 	public Tester() {
 		// TODO Auto-generated constructor stub
 	}

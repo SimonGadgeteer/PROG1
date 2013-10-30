@@ -8,15 +8,12 @@ import java.util.HashSet;
  */
 public class Pruefungsverwaltung {
 
-  /**
-   * Speichert ein Pruefungsergebnis.
-   * 
-   * @param ergebnis Das Pruefungsergebnis.
-   */
-	
 	HashSet<String> studentenErgebnis = new HashSet<String>();
 	HashMap<Double, String> dictionaryDoubleText = new HashMap<Double, String>();
 	
+	/*
+	 * Setzt eine HashMap mit Uebersetzungen von Zahl zu Text auf.
+	 */
 	public Pruefungsverwaltung () {
 		//Dictionary aufsetzen
 		dictionaryDoubleText.put(1.0, "eins");
@@ -32,6 +29,11 @@ public class Pruefungsverwaltung {
 		dictionaryDoubleText.put(6.0, "sechs");
 	}
 	
+/**
+* Speichert ein Pruefungsergebnis.
+* 
+* @param ergebnis Das Pruefungsergebnis.
+*/
   public void speichereErgebnis(Pruefungsergebnis ergebnis) {
 	  pruefungsergebnisToHashMap(ergebnis);
   }
