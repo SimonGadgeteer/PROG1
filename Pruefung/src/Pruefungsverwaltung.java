@@ -35,7 +35,7 @@ public class Pruefungsverwaltung {
 * @param ergebnis Das Pruefungsergebnis.
 */
   public void speichereErgebnis(Pruefungsergebnis ergebnis) {
-	  pruefungsergebnisToHashMap(ergebnis);
+	  pruefungsergebnisToHashSet(ergebnis);
   }
 
   /**
@@ -57,11 +57,15 @@ public class Pruefungsverwaltung {
 	  }
   }
 
+  //Rundet die übergebene Zahl auf 0.5
   private double rundeAufHalbeNote(double note) {
     return Math.round(note * 2) / 2.0;
   }
   
-  private void pruefungsergebnisToHashMap(Pruefungsergebnis ergebnis) {
+  /*
+  * Speichert den Antworttext des Pruefungsergebnisses in ein HashSet 
+  */
+  private void pruefungsergebnisToHashSet(Pruefungsergebnis ergebnis) {
 
 	  String antwortText = "";
 	  

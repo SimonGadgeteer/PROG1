@@ -21,6 +21,7 @@ public class ZufaelligeNotengebung {
     pruefungsverwaltung.druckeAntworttexte();
   }
 
+  //Generiert eine Zufaellige Zahl und gibt ein double zurueck
   private double generiereZufaelligePruefungsnote() {
 	return (new Random().nextInt(10) + 2) / 2.0;
   }
