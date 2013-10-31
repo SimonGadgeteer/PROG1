@@ -1,6 +1,5 @@
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Zaehlt die Anzahl Vorkommnisse von Woertern ueber mehrere Zeichenketten.
@@ -46,31 +45,24 @@ public class Worthaeufigkeitsanalyse {
 		{
 			inputText = inputText.replace(satzzeichenitem, "");
 		}
-		inputText = inputText.toLowerCase();
+		inputText = inputText.toLowerCase().trim();
 		
-		for(String wort : inputText.split(" "))
+		for(String wort : inputText.split(" +"))
 		{
 			if(!wortSpeicher.keySet().contains(wort))
 			{
-				wortSpeicher.put(wort, 1);
-				System.out.println("bam");
+				wortSpeicher.put(wort, 0);
 			}
-			else
-			{
-				int count = wortSpeicher.get(wort);
-				wortSpeicher.put(wort, ++count);
-			}
+				wortSpeicher.put(wort, wortSpeicher.get(wort) + 1);
 		}
-		
-		System.out.println("sadf: "+inputText);
 	}
 	
 	public void druckeStatistik()
 	{	
 		
-		for(int i =0; i < wortSpeicher.size(); i++)
+		for(String wortSpeicherKey : wortSpeicher.keySet())
 		{
-			System.out.println(wortSpeicher.entrySet());
+			System.out.println(wortSpeicherKey + " " + wortSpeicher.get(wortSpeicherKey));
 		}
 	}
 }
