@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Die Klasse MessApp steuert einen Messablauf, um die Performance des
  * Zufallszahlengenerators zu messen.
@@ -6,19 +8,18 @@
  * @version 0.9
  */
 public class MessApp {
-	private Messkonduktor messkonduktor;
-	private int[] anzahlMessungen;
+	private int anzahlMessungen;
 	private int anzahlMessreihen;
 	private int[][] messSammlung;
-	private double[] messungDurchschnitt;
+	private double messungDurchschnitt;
+	private ArrayList<Messkonduktor> messungenList = new ArrayList<Messkonduktor>();
 
 	/**
 	 * Fuehrt eine Messung durch.
 	 */
 	public void messen(int anzahlMessreihen, int anzahlMessungen) {
 		messSammlung = new int[anzahlMessreihen][anzahlMessungen];
-		messungDurchschnitt = new double[anzahlMessungen];
-		this.anzahlMessungen = new int[anzahlMessungen];
+		this.anzahlMessungen = anzahlMessungen;
 		this.anzahlMessreihen = anzahlMessreihen;
 
 		initialisieren();
@@ -32,29 +33,28 @@ public class MessApp {
 	}
 
 	private void initialisieren() {
-		messkonduktor = new Messkonduktor(400000);
+		for(int i= 0; i < anzahlMessreihen;i++)
+		{
+			messungenList.add(new Messkonduktor(400000));
+		}
 	}
 
-	/**
-	 * Fuehrt eine bestimmte Anzahl Messungen durch und speichert die Ergebnisse in ein int[][] Array
-	 */
+	 // Fuehrt eine bestimmte Anzahl Messungen durch und speichert die Ergebnisse in ein int[][] Array
 	private void analyseDurchfuehren() {
 
 		for(int i= 0; i < anzahlMessreihen; i++)
 		{
-			int[] temp = new int[anzahlMessungen.length];
-			temp = messkonduktor.messungenDurchfuehren(anzahlMessungen);
+			int[] temp = new int[anzahlMessungen];
+			temp = messungenList.get(i).messungenDurchfuehren(new int[anzahlMessungen]);
 
-				for(int ii = 0; ii < anzahlMessungen.length;ii++)
+				for(int ii = 0; ii < anzahlMessungen;ii++)
 				{
 					messSammlung[i][ii] = temp[ii];
 				}
 		}
 	}
 
-	/**
-	 * Berechnet den Mittelwert aller Zahlen in der Messreihe und druckt diesen aus.
-	 */
+	 // Berechnet den Mittelwert aller Zahlen in der Messreihe und druckt diesen aus.
 	private void berechneUndDruckeMittelwerteMessreihe() {
 
 		for (int i = 0; i < messSammlung.length; i++) {
@@ -66,24 +66,20 @@ public class MessApp {
 					+ (messreihe / messSammlung[i].length));
 		}
 	}
-
-	/**
-	 * Berechnet den Mittelwert aller N-ten Messungen aller Messreihen und druckt diesen aus.
-	 */
+	
+	 // Berechnet den Mittelwert aller N-ten Messungen aller Messreihen und druckt diesen aus.
 	private void berechneUndDruckeMittelwerteMessung() {
 		for (int i = 0; i < messSammlung.length; i++) {
+			messungDurchschnitt = 0;
 			for (int ii = 0; ii < messSammlung[i].length; ii++) {
-				messungDurchschnitt[ii] += messSammlung[i][ii];
+				messungDurchschnitt += messSammlung[i][ii];
 				if (ii == messSammlung[i].length - 1) {
-					System.out
-							.println("Durchschnitt von allen "
+					System.out.println("Durchschnitt von allen "
 									+ (i + 1)
 									+ ". Messungen: "
-									+ (messungDurchschnitt[ii] / messSammlung[i].length));
+									+ (messungDurchschnitt / messSammlung[i].length));
 				}
 			}
-
 		}
-
 	}
 }

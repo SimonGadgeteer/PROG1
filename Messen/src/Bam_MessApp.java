@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
  * Die Klasse MessApp steuert einen Messablauf, um die Performance des
  * Zufallszahlengenerators zu messen.
@@ -7,19 +5,20 @@ import java.util.ArrayList;
  * @author Dave Kramer, Simon Schwarz
  * @version 0.9
  */
-public class MessAppli {
-	private int anzahlMessungen;
+public class Bam_MessApp {
+	private Messkonduktor messkonduktor;
+	private int[] anzahlMessungen;
 	private int anzahlMessreihen;
 	private int[][] messSammlung;
-	private double messungDurchschnitt;
-	private ArrayList<Messkonduktor> messungenList = new ArrayList<Messkonduktor>();
+	private double[] messungDurchschnitt;
 
 	/**
 	 * Fuehrt eine Messung durch.
 	 */
 	public void messen(int anzahlMessreihen, int anzahlMessungen) {
 		messSammlung = new int[anzahlMessreihen][anzahlMessungen];
-		this.anzahlMessungen = anzahlMessungen;
+		messungDurchschnitt = new double[anzahlMessungen];
+		this.anzahlMessungen = new int[anzahlMessungen];
 		this.anzahlMessreihen = anzahlMessreihen;
 
 		initialisieren();
@@ -29,14 +28,11 @@ public class MessAppli {
 	}
 
 	public static void main(String[] args) {
-		new MessAppli().messen(10, 20);
+		new Bam_MessApp().messen(10, 20);
 	}
 
 	private void initialisieren() {
-		for(int i= 0; i < anzahlMessreihen;i++)
-		{
-			messungenList.add(new Messkonduktor(400000));
-		}
+		messkonduktor = new Messkonduktor(400000);
 	}
 
 	/**
@@ -46,10 +42,10 @@ public class MessAppli {
 
 		for(int i= 0; i < anzahlMessreihen; i++)
 		{
-			int[] temp = new int[anzahlMessungen];
-			temp = messungenList.get(i).messungenDurchfuehren(new int[anzahlMessungen]);
+			int[] temp = new int[anzahlMessungen.length];
+			temp = messkonduktor.messungenDurchfuehren(anzahlMessungen);
 
-				for(int ii = 0; ii < anzahlMessungen;ii++)
+				for(int ii = 0; ii < anzahlMessungen.length;ii++)
 				{
 					messSammlung[i][ii] = temp[ii];
 				}
@@ -76,14 +72,14 @@ public class MessAppli {
 	 */
 	private void berechneUndDruckeMittelwerteMessung() {
 		for (int i = 0; i < messSammlung.length; i++) {
-			messungDurchschnitt = 0;
 			for (int ii = 0; ii < messSammlung[i].length; ii++) {
-				messungDurchschnitt += messSammlung[i][ii];
+				messungDurchschnitt[ii] += messSammlung[i][ii];
 				if (ii == messSammlung[i].length - 1) {
-					System.out.println("Durchschnitt von allen "
+					System.out
+							.println("Durchschnitt von allen "
 									+ (i + 1)
 									+ ". Messungen: "
-									+ (messungDurchschnitt / messSammlung[i].length));
+									+ (messungDurchschnitt[ii] / messSammlung[i].length));
 				}
 			}
 
