@@ -26,11 +26,12 @@ public class Worthaeufigkeitsanalyse {
 		satzzeichen.add(",");
 		satzzeichen.add(":");
 		satzzeichen.add(";");
+		satzzeichen.add("\"");
 	}
 	
 
 	public static void main(String[] args) {
-		Worthaeufigkeitsanalyse wha =new Worthaeufigkeitsanalyse();
+		Worthaeufigkeitsanalyse wha = new Worthaeufigkeitsanalyse();
 		wha.verarbeiteText("FRITZ ist!!!!!! doof, im fall");
 		wha.verarbeiteText(" !!!!!! doof, im fall");
 		wha.verarbeiteText(" !!!!!! doof, im fall");
@@ -39,6 +40,12 @@ public class Worthaeufigkeitsanalyse {
 	}
 
 
+	/**
+	 * Nimmt einen Text entgegen.
+	 * Gleichzeitig werden alle gaengigen Satzzeichen des Textes entfernt.
+	 * Die Woerter werden gezaehlt und zu den bereits gezaehlten Woerter addiert.
+	 * @param inputText zusaetzlicher Text, wo die Woerter gezaehlt werden muessen
+	 */
 	public void verarbeiteText(String inputText)
 	{
 		for(String satzzeichenitem : satzzeichen)
@@ -57,6 +64,11 @@ public class Worthaeufigkeitsanalyse {
 		}
 	}
 	
+	
+	/**
+	 * Bringt die Statistik auf den System.out Stream.
+	 * Format: wort + " " + wortzaehlung
+	 */
 	public void druckeStatistik()
 	{	
 		
