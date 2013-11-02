@@ -1,6 +1,5 @@
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Zaehlt die Anzahl Vorkommnisse von Woertern ueber mehrere Zeichenketten.
@@ -27,11 +26,12 @@ public class Worthaeufigkeitsanalyse {
 		satzzeichen.add(",");
 		satzzeichen.add(":");
 		satzzeichen.add(";");
+		satzzeichen.add("\"");
 	}
 	
 
 	public static void main(String[] args) {
-		Worthaeufigkeitsanalyse wha =new Worthaeufigkeitsanalyse();
+		Worthaeufigkeitsanalyse wha = new Worthaeufigkeitsanalyse();
 		wha.verarbeiteText("FRITZ ist!!!!!! doof, im fall");
 		wha.verarbeiteText(" !!!!!! doof, im fall");
 		wha.verarbeiteText(" !!!!!! doof, im fall");
@@ -40,37 +40,41 @@ public class Worthaeufigkeitsanalyse {
 	}
 
 
+	/**
+	 * Nimmt einen Text entgegen.
+	 * Gleichzeitig werden alle gaengigen Satzzeichen des Textes entfernt.
+	 * Die Woerter werden gezaehlt und zu den bereits gezaehlten Woerter addiert.
+	 * @param inputText zusaetzlicher Text, wo die Woerter gezaehlt werden muessen
+	 */
 	public void verarbeiteText(String inputText)
 	{
 		for(String satzzeichenitem : satzzeichen)
 		{
 			inputText = inputText.replace(satzzeichenitem, "");
 		}
-		inputText = inputText.toLowerCase();
+		inputText = inputText.toLowerCase().trim();
 		
-		for(String wort : inputText.split(" "))
+		for(String wort : inputText.split(" +"))
 		{
 			if(!wortSpeicher.keySet().contains(wort))
 			{
-				wortSpeicher.put(wort, 1);
-				System.out.println("bam");
+				wortSpeicher.put(wort, 0);
 			}
-			else
-			{
-				int count = wortSpeicher.get(wort);
-				wortSpeicher.put(wort, ++count);
-			}
+				wortSpeicher.put(wort, wortSpeicher.get(wort) + 1);
 		}
-		
-		System.out.println("sadf: "+inputText);
 	}
 	
+	
+	/**
+	 * Bringt die Statistik auf den System.out Stream.
+	 * Format: wort + " " + wortzaehlung
+	 */
 	public void druckeStatistik()
 	{	
 		
-		for(int i =0; i < wortSpeicher.size(); i++)
+		for(String wortSpeicherKey : wortSpeicher.keySet())
 		{
-			System.out.println(wortSpeicher.entrySet());
+			System.out.println(wortSpeicherKey + " " + wortSpeicher.get(wortSpeicherKey));
 		}
 	}
 }
