@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * Zaehlt die Anzahl Vorkommnisse von Woertern ueber mehrere Zeichenketten.
  * Es lassen sich eine beliebige Anzahl an Zeichenketten uebergeben. Die
@@ -8,10 +11,70 @@
  * Wort werten zu koennen.
  * 
  * @version 1.0
- * @author XXXX
+ * @author Dave Kramer, Simon Schwarz
  */
 public class Worthaeufigkeitsanalyse {
 
-
+	static private final HashSet<String> satzzeichen = new HashSet<String>();
+	private HashMap<String, Integer> wortSpeicher = new HashMap<String, Integer>();
 	
+	static
+	{
+		satzzeichen.add("?");
+		satzzeichen.add("!");
+		satzzeichen.add(".");
+		satzzeichen.add(",");
+		satzzeichen.add(":");
+		satzzeichen.add(";");
+		satzzeichen.add("\"");
+	}
+	
+
+	public static void main(String[] args) {
+		Worthaeufigkeitsanalyse wha = new Worthaeufigkeitsanalyse();
+		wha.verarbeiteText("FRITZ ist!!!!!! doof, im fall");
+		wha.verarbeiteText(" !!!!!! doof, im fall");
+		wha.verarbeiteText(" !!!!!! doof, im fall");
+		wha.verarbeiteText(" ist!!!!!! doof, im ");
+		wha.druckeStatistik();
+	}
+
+
+	/**
+	 * Nimmt einen Text entgegen.
+	 * Gleichzeitig werden alle gaengigen Satzzeichen des Textes entfernt.
+	 * Die Woerter werden gezaehlt und zu den bereits gezaehlten Woerter addiert.
+	 * @param inputText zusaetzlicher Text, wo die Woerter gezaehlt werden muessen
+	 */
+	public void verarbeiteText(String inputText)
+	{
+		for(String satzzeichenitem : satzzeichen)
+		{
+			inputText = inputText.replace(satzzeichenitem, "");
+		}
+		inputText = inputText.toLowerCase().trim();
+		
+		for(String wort : inputText.split(" +"))
+		{
+			if(!wortSpeicher.keySet().contains(wort))
+			{
+				wortSpeicher.put(wort, 0);
+			}
+				wortSpeicher.put(wort, wortSpeicher.get(wort) + 1);
+		}
+	}
+	
+	
+	/**
+	 * Bringt die Statistik auf den System.out Stream.
+	 * Format: wort + " " + wortzaehlung
+	 */
+	public void druckeStatistik()
+	{	
+		
+		for(String wortSpeicherKey : wortSpeicher.keySet())
+		{
+			System.out.println(wortSpeicherKey + " " + wortSpeicher.get(wortSpeicherKey));
+		}
+	}
 }

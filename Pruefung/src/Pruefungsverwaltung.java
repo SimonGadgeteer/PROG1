@@ -57,7 +57,7 @@ public class Pruefungsverwaltung {
 	  }
   }
 
-  //Rundet die übergebene Zahl auf 0.5
+  //Rundet die uebergebene Zahl auf 0.5
   private double rundeAufHalbeNote(double note) {
     return Math.round(note * 2) / 2.0;
   }
