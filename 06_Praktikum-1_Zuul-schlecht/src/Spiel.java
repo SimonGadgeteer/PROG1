@@ -30,6 +30,12 @@ public class Spiel
         raeumeAnlegen();
         parser = new Parser();
     }
+    
+    public static void main(String args[])
+    {
+    	Spiel spiel = new Spiel();
+    	spiel.spielen();
+    }
 
     /**
      * Erzeuge alle Räume und verbinde ihre Ausgänge miteinander.
@@ -86,18 +92,9 @@ public class Spiel
         System.out.println();
         System.out.println("Sie sind " + aktuellerRaum.gibBeschreibung());
         System.out.print("Ausgänge: ");
-        if(aktuellerRaum.nordausgang != null) {
-            System.out.print("north ");
-        }
-        if(aktuellerRaum.ostausgang != null) {
-            System.out.print("east ");
-        }
-        if(aktuellerRaum.suedausgang != null) {
-            System.out.print("south ");
-        }
-        if(aktuellerRaum.westausgang != null) {
-            System.out.print("west ");
-        }
+
+        raumInfoAusgeben();
+        
         System.out.println();
     }
 
@@ -143,6 +140,25 @@ public class Spiel
         System.out.println("Ihnen stehen folgende Befehle zur Verfügung:");
         System.out.println("   go quit help");
     }
+    
+    /**
+     * Gibt an, welcher Raum der Aktuelle ist.
+     */
+    private void raumInfoAusgeben()
+    {
+        if(aktuellerRaum.nordausgang != null) {
+            System.out.print("north ");
+        }
+        if(aktuellerRaum.ostausgang != null) {
+            System.out.print("east ");
+        }
+        if(aktuellerRaum.suedausgang != null) {
+            System.out.print("south ");
+        }
+        if(aktuellerRaum.westausgang != null) {
+            System.out.print("west ");
+        }
+    }
 
     /**
      * Versuche, in eine Richtung zu gehen. Wenn es einen Ausgang gibt,
@@ -181,18 +197,9 @@ public class Spiel
             aktuellerRaum = naechsterRaum;
             System.out.println("Sie sind " + aktuellerRaum.gibBeschreibung());
             System.out.print("Ausgänge: ");
-            if(aktuellerRaum.nordausgang != null) {
-                System.out.print("north ");
-            }
-            if(aktuellerRaum.ostausgang != null) {
-                System.out.print("east ");
-            }
-            if(aktuellerRaum.suedausgang != null) {
-                System.out.print("south ");
-            }
-            if(aktuellerRaum.westausgang != null) {
-                System.out.print("west ");
-            }
+            
+            raumInfoAusgeben();
+            
             System.out.println();
         }
     }
