@@ -1,60 +1,64 @@
+import java.util.HashMap;
+
 /**
- * Diese Klasse modelliert Räume in der Welt von Zuul.
+ * Diese Klasse modelliert Raeume in der Welt von Zuul.
  * 
- * Ein "Raum" repräsentiert einen Ort in der virtuellen Landschaft des
- * Spiels. Ein Raum ist mit anderen Räumen über Ausgänge verbunden.
- * Mögliche Ausgänge liegen im Norden, Osten, Süden und Westen.
- * Für jede Richtung hält ein Raum eine Referenz auf den 
+ * Ein "Raum" repraesentiert einen Ort in der virtuellen Landschaft des
+ * Spiels. Ein Raum ist mit anderen Raeumen ueber Ausgaenge verbunden.
+ * Moegliche Ausgaenge liegen im Norden, Osten, Sueden und Westen.
+ * Fuer jede Richtung haelt ein Raum eine Referenz auf den 
  * benachbarten Raum.
  * 
- * @author  Michael Kölling und David J. Barnes
- * @version 31.07.2011
+ * @author  Michael Kuelling und David J. Barnes, Dave Kramer, Simon Schwarz
+ * @version 07.11.2013
  */
-public class Raum 
+class Raum 
 {
-    public String beschreibung;
-    public Raum nordausgang;
-    public Raum suedausgang;
-    public Raum ostausgang;
-    public Raum westausgang;
+	private String beschreibung;
+	private HashMap<String, Raum> ausgaenge;
 
     /**
      * Erzeuge einen Raum mit einer Beschreibung. Ein Raum
-     * hat anfangs keine Ausgänge.
-     * @param beschreibung enthält eine Beschreibung in der Form
-     *        "in einer Küche" oder "auf einem Sportplatz".
+     * hat anfangs keine Ausgaenge.
+     * @param beschreibung enthaelt eine Beschreibung in der Form
+     *        "in einer Kueche" oder "auf einem Sportplatz".
      */
     public Raum(String beschreibung) 
     {
+    	ausgaenge = new HashMap<String, Raum>();
         this.beschreibung = beschreibung;
     }
 
     /**
-     * Definiere die Ausgänge dieses Raums. Jede Richtung
-     * führt entweder in einen anderen Raum oder ist 'null'
+     * Definiere die Ausgaenge dieses Raums. Jede Richtung
+     * fuehrt entweder in einen anderen Raum oder ist 'null'
      * (kein Ausgang).
-     * @param norden Der Nordausgang.
-     * @param osten Der Ostausgang.
-     * @param sueden Der Südausgang.
-     * @param westen Der Westausgang.
+     * @param richtung Norden, Osten, Sueden, Westen.
+     * @param raum	Objekt des Raumes fÃ¼r welchen der Ausgang definiert werden soll
      */
-    public void setzeAusgaenge(Raum norden, Raum osten,
-                               Raum sueden, Raum westen) 
+    public void setzeAusgaenge(String richtung, Raum raum) 
     {
-        if(norden != null) {
-            nordausgang = norden;
-        }
-        if(osten != null) {
-            ostausgang = osten;
-        }
-        if(sueden != null) {
-            suedausgang = sueden;
-        }
-        if(westen != null) {
-            westausgang = westen;
-        }
+        ausgaenge.put(richtung, raum);
     }
 
+    public Raum gibAusgang(String richtung)
+    {
+    	return ausgaenge.get(richtung);
+    }
+    
+    /**
+    * Liefere eine Beschreibung der AusgaÌˆnge dieses Raumes, bespielsweise * "AusgaÌˆnge: north west".
+    *
+    * @return eine Beschreibung der verfuÌˆgbaren AusgaÌˆnge
+    */
+    public String gibAusgaengeAlsString()
+    {
+    	
+    	
+		return "AusgÃ¤nge: "+beschreibung;
+    	
+    }
+    
     /**
      * @return die Beschreibung dieses Raums.
      */
