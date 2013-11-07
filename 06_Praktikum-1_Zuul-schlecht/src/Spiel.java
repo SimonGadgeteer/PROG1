@@ -52,11 +52,18 @@ public class Spiel
         buero = new Raum("im Verwaltungsbüro der Informatik");
         
         // die Ausgänge initialisieren
-        draussen.setzeAusgaenge(null, hoersaal, labor, cafeteria);
-        hoersaal.setzeAusgaenge(null, null, null, draussen);
-        cafeteria.setzeAusgaenge(null, draussen, null, null);
-        labor.setzeAusgaenge(draussen, buero, null, null);
-        buero.setzeAusgaenge(null, null, null, labor);
+        draussen.setzeAusgaenge("east", hoersaal);
+        draussen.setzeAusgaenge("south", labor);
+        draussen.setzeAusgaenge("west", cafeteria);
+
+        hoersaal.setzeAusgaenge("west", draussen);
+        
+        cafeteria.setzeAusgaenge("east", draussen);
+
+        labor.setzeAusgaenge("north", draussen);
+        labor.setzeAusgaenge("east", buero);
+        
+        buero.setzeAusgaenge("west", labor);
 
         aktuellerRaum = draussen;  // das Spiel startet draussen
     }
@@ -146,18 +153,7 @@ public class Spiel
      */
     private void raumInfoAusgeben()
     {
-        if(aktuellerRaum.nordausgang != null) {
-            System.out.print("north ");
-        }
-        if(aktuellerRaum.ostausgang != null) {
-            System.out.print("east ");
-        }
-        if(aktuellerRaum.suedausgang != null) {
-            System.out.print("south ");
-        }
-        if(aktuellerRaum.westausgang != null) {
-            System.out.print("west ");
-        }
+        System.out.println(aktuellerRaum.gibBeschreibung());
     }
 
     /**
@@ -178,16 +174,16 @@ public class Spiel
         // Wir versuchen, den Raum zu verlassen.
         Raum naechsterRaum = null;
         if(richtung.equals("north")) {
-            naechsterRaum = aktuellerRaum.nordausgang;
+            naechsterRaum = aktuellerRaum.gibAusgang("north");
         }
         if(richtung.equals("east")) {
-            naechsterRaum = aktuellerRaum.ostausgang;
+            naechsterRaum = aktuellerRaum.gibAusgang("east");
         }
         if(richtung.equals("south")) {
-            naechsterRaum = aktuellerRaum.suedausgang;
+            naechsterRaum = aktuellerRaum.gibAusgang("south");
         }
         if(richtung.equals("west")) {
-            naechsterRaum = aktuellerRaum.westausgang;
+            naechsterRaum = aktuellerRaum.gibAusgang("west");
         }
 
         if (naechsterRaum == null) {
