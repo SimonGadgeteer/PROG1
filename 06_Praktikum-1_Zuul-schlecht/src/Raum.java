@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Diese Klasse modelliert Raeume in der Welt von Zuul.
@@ -53,10 +53,12 @@ class Raum
     */
     public String gibAusgaengeAlsString()
     {
+    	String ausgangsRichtungen = "";
     	
+        ausgangsRichtungen += " "+ausgaenge.keySet().toString();
+
     	
-		return "Ausgänge: "+beschreibung;
-    	
+		return "Ausgänge: "+ausgangsRichtungen;	
     }
     
     /**
