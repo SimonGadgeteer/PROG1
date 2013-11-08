@@ -55,10 +55,12 @@ class Raum
     {
     	String ausgangsRichtungen = "";
     	
-        ausgangsRichtungen += " "+ausgaenge.keySet().toString();
-
+    	for(String ausgabe: ausgaenge.keySet())
+    	{
+    		ausgangsRichtungen += ", "+ausgabe;
+    	}
     	
-		return "Ausgänge: "+ausgangsRichtungen;	
+		return ausgangsRichtungen;	
     }
     
     /**
