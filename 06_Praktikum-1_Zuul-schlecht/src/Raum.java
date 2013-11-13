@@ -53,11 +53,21 @@ class Raum
     */
     public String gibAusgaengeAlsString()
     {
+    	boolean ersterDatensatz = true;
     	String ausgangsRichtungen = "";
     	
+
     	for(String ausgabe: ausgaenge.keySet())
     	{
-    		ausgangsRichtungen += ", "+ausgabe;
+        	if(ersterDatensatz)
+        	{
+        		ausgangsRichtungen = ausgabe;
+        		ersterDatensatz = false;
+        	}
+        	else
+        	{
+        		ausgangsRichtungen += ", "+ausgabe;
+        	}
     	}
     	
 		return ausgangsRichtungen;	
