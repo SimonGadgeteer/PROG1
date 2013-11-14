@@ -1,5 +1,6 @@
 /**
- * sadf
+ * Erstellt eine kleine Anwendung welche mittels Parser User Inputs liest und dies dem Kontroller zur Weiter-
+ * arbeitung übergibt.
  *
  * @author  Dave Kramer, Simon Schwarz
  * @version 1.0
