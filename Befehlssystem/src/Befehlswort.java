@@ -38,17 +38,16 @@ public class Befehlswort {
 		return gueltigeBefehle.contains(eingabe);
 	}
 
-
 	/**
-	 * Gibt eine Array der akzeptierten Befehlsworte zurueck.
-	 * 
-	 * @return die akzeptierten Befehlsworte als Text
-	 */
-	public static String[] gibBefehlsworteAlsText() {
-		ArrayList<String> befehle = new ArrayList<String>();
-		for (String befehl : gueltigeBefehle) {
-			befehle.add(befehl);
-		}
-		return befehle.toArray(null);
+	* Gibt die akzeptierten Befehlsworte als Text zurueck.
+	*
+	* @return Die akzeptierten Befehlsworte als Text
+	*/
+	public static String gibBefehlsworteAlsText() {
+	              String text = "";
+	              for (String befehl : gueltigeBefehle) {
+	                             text = text + befehl + " ";
+	              }
+	              return text;
 	}
 }
