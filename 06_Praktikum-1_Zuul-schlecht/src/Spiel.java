@@ -13,8 +13,8 @@
  *  startet das Spiel. Sie wertet auch die Befehle aus, die der
  *  Parser liefert, und sorgt f�r ihre Ausf�hrung.
  * 
- * @author  Michael K�lling und David J. Barnes
- * @version 31.07.2011
+ * @author  Michael K�lling und David J. Barnes, Dave Kramer, Simon Schwarz
+ * @version 12.11.2013
  */
 
 public class Spiel 
