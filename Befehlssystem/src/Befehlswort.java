@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-
 /**
  * Diese Klasse haelt eine Aufzaehlung der akzeptierten Befehlswoerter.
  * Mit ihrer Hilfe werden eingetippte Befehle erkannt.
@@ -12,10 +9,10 @@ public enum Befehlswort {
 
 	UNBEKANNT("unbekannt"), GEHE("gehe"), HILFE("hilfe"), BEENDEN("beenden");
 
-	private final String Befehl;
+	private String Befehl;
 	
-	Befehlswort(String Befehl){
-		this.Befehl = Befehl;
+	Befehlswort(String befehl){
+		Befehl = befehl;
 	}
 	
 	public static Befehlswort gibBefehlsWort(String wort) {
@@ -26,5 +23,17 @@ public enum Befehlswort {
 			}
 		}
 		return Befehlswort.UNBEKANNT;
+	}
+	
+	public static String gibBefehlsWorteAlsText() {
+		return Befehlswort.values().toString();
+	}
+	
+	public String getBefehlswort() {
+		return Befehl;
+	}
+	
+	public void setBefelswort(String befehl) {
+		Befehl = befehl;
 	}
 }
