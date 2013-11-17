@@ -17,14 +17,14 @@ public class Kontroller {
 	public boolean verarbeiteBefehl(Befehl befehl) {
 		boolean macheWeiter = true;
 		String befehlswort = befehl.gibBefehlswort();
-		if (Befehlswort.istBefehl(befehlswort)) {
+		if (Befehlswort.gibBefehlsWort(befehlswort) != Befehlswort.UNBEKANNT) {
 
-			if (befehlswort.equals("gehe")) {
+			if (befehlswort.equals(Befehlswort.GEHE.getBefehlswort())) {
 				System.out.println("Befehl GEHE " + befehl.gibZweitesWort() + " wird ausgefuehrt");
-			} else if (befehlswort.equals("hilfe")) {
+			} else if (befehlswort.equals(Befehlswort.HILFE.getBefehlswort())) {
 				System.out.println("Gueltige Befehle: "
-						+ Befehlswort.gibBefehlsworteAlsText());
-			} else if (befehlswort.equals("beenden")) {
+						+ Befehlswort.gibBefehlsWorteAlsText());
+			} else if (befehlswort.equals(Befehlswort.BEENDEN.getBefehlswort())) {
 				System.out.println("Befehl BEENDEN wird ausgefuehrt.");
 				macheWeiter = false;
 			} else {

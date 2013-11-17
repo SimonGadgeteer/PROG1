@@ -17,7 +17,7 @@ public enum Befehlswort {
 	
 	public static Befehlswort gibBefehlsWort(String wort) {
 		for (Befehlswort befehlswort : Befehlswort.values()) {
-			if (wort.equals(befehlswort.toString()))
+			if (befehlswort.getBefehlswort().equals(wort))
 			{
 				return befehlswort;
 			}
