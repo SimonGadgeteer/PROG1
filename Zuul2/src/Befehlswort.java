@@ -7,12 +7,18 @@
  */
 public enum Befehlswort {
 
-	UNBEKANNT("unbekannt"), GEHE("gehe"), HILFE("hilfe"), BEENDEN("beenden");
+	UNBEKANNT("unbekannt"),
+	GEHE("gehe"),
+	UMSEHEN("umsehen"),
+	UEBERNIMM("uebernimm"),
+	NIMM("nimm"),
+	HILFE("hilfe"),
+	BEENDEN("beenden");
 
-	private String Befehl;
+	private String befehl;
 	
 	Befehlswort(String befehl){
-		Befehl = befehl;
+		this.befehl = befehl;
 	}
 	
 	public static Befehlswort gibBefehlsWort(String wort) {
@@ -26,14 +32,19 @@ public enum Befehlswort {
 	}
 	
 	public static String gibBefehlsWorteAlsText() {
-		return Befehlswort.values().toString();
+		String returnString = "";
+		for (Befehlswort befehlswort : Befehlswort.values())
+		{
+			returnString += befehlswort.getBefehlswort();
+		}
+		return returnString;
 	}
 	
 	public String getBefehlswort() {
-		return Befehl;
+		return befehl;
 	}
 	
 	public void setBefelswort(String befehl) {
-		Befehl = befehl;
+		this.befehl = befehl;
 	}
 }

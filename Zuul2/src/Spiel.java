@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -31,6 +30,12 @@ public class Spiel {
 		spielweltErzeugen();
 
 		parser = new Parser();
+	}
+	
+	public static void main(String args[])
+	{
+		Spiel spiel = new Spiel();
+		spiel.spielen();
 	}
 
 	/**
@@ -168,7 +173,7 @@ public class Spiel {
 	private boolean verarbeiteBefehl(Befehl befehl) {
 		boolean moechteBeenden = false;
 
-		Befehlswort befehlswort = befehl.gibBefehlswort();
+		Befehlswort befehlswort = Befehlswort.gibBefehlsWort(befehl.gibBefehlswort());
 
 		switch (befehlswort) {
 		case UNBEKANNT:
@@ -313,7 +318,7 @@ public class Spiel {
 	 */
 	private void befehleAusgeben() {
 		System.out.println("Ihnen stehen folgende Befehle zur Verfuegung:");
-		System.out.println(Befehlswort.gibBefehlsworteAlsText());
+		System.out.println(Befehlswort.gibBefehlsWorteAlsText());
 	}
 
 	/**
