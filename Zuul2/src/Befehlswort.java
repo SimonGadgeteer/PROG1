@@ -35,7 +35,7 @@ public enum Befehlswort {
 		String returnString = "";
 		for (Befehlswort befehlswort : Befehlswort.values())
 		{
-			returnString += befehlswort.getBefehlswort();
+			returnString += befehlswort.getBefehlswort() + " ";
 		}
 		return returnString;
 	}
