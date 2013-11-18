@@ -2,8 +2,8 @@
  * Diese Klasse haelt eine Aufzaehlung der akzeptierten Befehlswoerter.
  * Mit ihrer Hilfe werden eingetippte Befehle erkannt.
  *
- * @author  tebe
- * @version 1.0
+ * @author  tebe, Dave Kramer, Simon Schwarz
+ * @version 1.1
  */
 public enum Befehlswort {
 

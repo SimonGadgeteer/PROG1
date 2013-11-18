@@ -3,7 +3,8 @@
  * {@link Befehl Befehl} und lÃ¶sst die dazu 
  * passenden Aktionen aus.
  * 
- * @author tebe
+ * @author tebe, Dave Kramer, Simon Schwarz
+ * @version 1.0
  *
  */
 public class Kontroller {

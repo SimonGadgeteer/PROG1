@@ -14,8 +14,8 @@ import java.util.HashMap;
  * Spiel. Sie wertet auch die Befehle aus, die der Parser liefert und sorgt fuer
  * ihre Ausfuehrung.
  * 
- * @author tebe (Original: Michael Koelling und David J. Barnes)
- * @version 1.0
+ * @author tebe (Original: Michael Koelling und David J. Barnes), Dave Kramer, Simon Schwarz
+ * @version 1.2
  */
 
 public class Spiel {
