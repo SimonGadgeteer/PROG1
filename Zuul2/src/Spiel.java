@@ -239,33 +239,20 @@ public class Spiel {
 	private void gegenstandEinpacken(int nummer) {
 		Gegenstand gegenstand = aktuellerRaum.herausnehmen(nummer);
 		if (gegenstand == null) {
-			System.out.println("Es gibt keinen Gegenstand mit dieser Nummer: "
-					+ nummer);
-		} else {
-			if (spieler.gibTragkraft() >= berechneGewicht(spieler.getRucksack()) + gegenstand.gibGewicht()) {
-				System.out.println("Gegenstand eingepackt: " + gegenstand.gibName());
-				spieler.getRucksack().add(gegenstand);
-			} else {
-				System.out
-						.println("Gegenstand konnte nicht eingepackt werden.");
-				aktuellerRaum.hineinlegen(gegenstand);
-			}
+			System.out.println("Es gibt keinen Gegenstand mit dieser Nummer: " + nummer);
+			return;
 		}
+		
+		if(spieler.checkGegenstandTragbar(gegenstand)) {
+			spieler.gegenstandInRucksackPacken(gegenstand);
+		}
+		else {
+			System.out.println("Gegenstand konnte nicht eingepackt werden.");
+			aktuellerRaum.hineinlegen(gegenstand);			
+		}
+		
 	}
 
-	/**
-	 * Berechnet das Gewicht der Gegenstaende in dieser Liste
-	 * @param rucksack Die Liste mit Gegenstaenden
-	 * @return Das Gewicht der Gegenstaende
-	 */
-	private int berechneGewicht(ArrayList<Gegenstand> rucksack) {
-		int gewicht = 0;
-		for(Gegenstand gegenstand : rucksack) {
-			gewicht += gegenstand.gibGewicht();
-		}
-		return gewicht;
-	}
-	
 	/**
 	 * Uebernimmt die Kontrolle der spezifizierten Person. Der Spieler steuert
 	 * anschliessend neu diese Person.

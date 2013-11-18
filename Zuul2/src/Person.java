@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-
 /**
  * Diese Klasse modeliert eine Person, die einen Namen
  * hat und einen Rucksack traegt. Im Rucksack kann sie 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 public class Person {
   private final String name;
   private final int tragkraft;
-  private final ArrayList<Gegenstand> rucksack = new ArrayList<Gegenstand>();
+  private Rucksack rucksack;
 
  /**
    * Erzeugt eine Person mit Namen und Tragkraft.
@@ -24,11 +23,34 @@ public class Person {
   public Person(String name, int tragkraft) {
 	  this.tragkraft = tragkraft;
 	  this.name = name;
+	  this.rucksack = new Rucksack();
   }
   
- public ArrayList<Gegenstand> getRucksack() {
+ public void gegenstandInRucksackPacken(Gegenstand gegenstand) {
+		if (checkGegenstandTragbar(gegenstand)) {
+			rucksack.packeGegenstand(gegenstand);
+		}
+}
+  
+public boolean checkGegenstandTragbar (Gegenstand gegenstand) {
+	if (tragkraft >= (getRucksackGewicht() + gegenstand.gibGewicht())) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+  public ArrayList<Gegenstand> getRucksackInhalt() {
+	  return rucksack.getRucksackInhalt();
+  }
+  
+  public int getRucksackGewicht() {
+	  return rucksack.getRucksackGewicht();
+  }
+  
+ /*public ArrayList<Gegenstand> getRucksack() {
 	 return rucksack;
- }
+ }*/
   
   /**
    * Gibt die Tragkraft zurueck.
