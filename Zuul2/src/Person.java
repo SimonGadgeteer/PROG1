@@ -26,10 +26,12 @@ public class Person {
 	  this.rucksack = new Rucksack();
   }
   
- public void gegenstandInRucksackPacken(Gegenstand gegenstand) {
+ public boolean gegenstandInRucksackPacken(Gegenstand gegenstand) {
 		if (checkGegenstandTragbar(gegenstand)) {
 			rucksack.packeGegenstand(gegenstand);
+			return true;
 		}
+		return false;
 }
   
 public boolean checkGegenstandTragbar (Gegenstand gegenstand) {

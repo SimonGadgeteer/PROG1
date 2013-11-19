@@ -243,12 +243,9 @@ public class Spiel {
 			return;
 		}
 		
-		if(spieler.checkGegenstandTragbar(gegenstand)) {
-			spieler.gegenstandInRucksackPacken(gegenstand);
-		}
-		else {
+		if(!spieler.gegenstandInRucksackPacken(gegenstand)) {
 			System.out.println("Gegenstand konnte nicht eingepackt werden.");
-			aktuellerRaum.hineinlegen(gegenstand);			
+			aktuellerRaum.hineinlegen(gegenstand);	
 		}
 		
 	}
