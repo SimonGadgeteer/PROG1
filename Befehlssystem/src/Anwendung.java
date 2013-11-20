@@ -22,7 +22,9 @@ public class Anwendung {
     	anwendung.start();
     }
     
-    
+    /**
+     * Startet das Programm und liess solange Usereingaben bis dieser das Befehlswort zum beenden eingibt
+     */
     public void start()
     {
     	parser = new Parser();
