@@ -12,7 +12,7 @@ import java.util.Scanner;
  * unbekannter Befehl gekennzeichnetes Objekt zurueck.
  * 
  * @author Dave Kramer, Simon Schwarz
- * @version 18.10.2013
+ * @version 1.0
  */
 class Parser {
     // Lieferant fuer eingegebene Befehle

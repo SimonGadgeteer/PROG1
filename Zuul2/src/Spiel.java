@@ -15,7 +15,7 @@ import java.util.HashMap;
  * ihre Ausfuehrung.
  * 
  * @author tebe (Original: Michael Koelling und David J. Barnes), Dave Kramer, Simon Schwarz
- * @version 1.2
+ * @version 1.3
  */
 
 public class Spiel {
@@ -205,7 +205,7 @@ public class Spiel {
 	}
 
 	/**
-	 * 
+	 * Gib Überblick über den aktuellen Raum, wie anwesende Personen, Gegenstände, aktueller Raumname, Ausgänge, aktuelle Person
 	 */
 	private void umsehen() {
 		System.out.println("Sie sind: " + spieler.gibName());
@@ -242,11 +242,20 @@ public class Spiel {
 			System.out.println("Es gibt keinen Gegenstand mit dieser Nummer: " + nummer);
 			return;
 		}
-		
-		if(!spieler.gegenstandInRucksackPacken(gegenstand)) {
-			System.out.println("Gegenstand konnte nicht eingepackt werden.");
-			aktuellerRaum.hineinlegen(gegenstand);	
+		else
+		{
+			if(!spieler.gegenstandInRucksackPacken(gegenstand)) {
+				System.out.println("Gegenstand konnte nicht eingepackt werden.");
+				aktuellerRaum.hineinlegen(gegenstand);	
+			}
+			else
+			{	System.out.println("Packe "+gegenstand.gibName()+" in Rucksack");
+				spieler.gegenstandInRucksackPacken(gegenstand);
+			//	aktuellerRaum.herausnehmen(nummer);
+			}
 		}
+		
+		
 		
 	}
 

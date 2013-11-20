@@ -11,8 +11,8 @@ import java.util.HashMap;
  * den benachbarten Raum. In einem Raum koennen sich Personen und 
  * Gegenstaende befinden. 
  * 
- * @author  tebe (Original: Michael Koelling und David J. Barnes)
- * @version 1.0
+ * @author  tebe (Original: Michael Koelling und David J. Barnes), Dave Kramer, Simon Schwarz
+ * @version 1.1
  */
 
 class Raum 

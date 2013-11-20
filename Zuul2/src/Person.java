@@ -7,8 +7,8 @@ import java.util.ArrayList;
  * Rucksack gepackt werden, wenn der Rucksack nicht schwerer wird
  * als die Tragkraft der Person. 
  * 
- * @author tebe
- * @version 1.0
+ * @author tebe, Dave Kramer, Simon Schwarz
+ * @version 1.1
  *
  */
 public class Person {
