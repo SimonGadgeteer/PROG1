@@ -242,21 +242,10 @@ public class Spiel {
 			System.out.println("Es gibt keinen Gegenstand mit dieser Nummer: " + nummer);
 			return;
 		}
-		else
-		{
-			if(!spieler.gegenstandInRucksackPacken(gegenstand)) {
-				System.out.println("Gegenstand konnte nicht eingepackt werden.");
-				aktuellerRaum.hineinlegen(gegenstand);	
-			}
-			else
-			{	System.out.println("Packe "+gegenstand.gibName()+" in Rucksack");
-				spieler.gegenstandInRucksackPacken(gegenstand);
-			//	aktuellerRaum.herausnehmen(nummer);
-			}
-		}
-		
-		
-		
+		if(!spieler.gegenstandInRucksackPacken(gegenstand)) {
+			System.out.println("Gegenstand konnte nicht eingepackt werden.");
+			aktuellerRaum.hineinlegen(gegenstand);	
+		}	
 	}
 
 	/**
@@ -324,7 +313,6 @@ public class Spiel {
 			System.out.println("Wohin moechten Sie gehen?");
 			return;
 		}
-
 		String richtung = befehl.gibZweitesWort();
 		// Wir versuchen, den Raum zu verlassen.
 		Raum naechsterRaum = aktuellerRaum.gibAusgang(richtung);

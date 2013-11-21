@@ -29,6 +29,7 @@ public class Person {
  public boolean gegenstandInRucksackPacken(Gegenstand gegenstand) {
 		if (checkGegenstandTragbar(gegenstand)) {
 			rucksack.packeGegenstand(gegenstand);
+			System.out.println("Packe "+gegenstand.gibName()+" in Rucksack");
 			return true;
 		}
 		return false;
