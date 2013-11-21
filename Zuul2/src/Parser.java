@@ -11,8 +11,8 @@ import java.util.Scanner;
  * keinen bekannten Befehl enthaelt, dann liefert der Parser ein als 
  * unbekannter Befehl gekennzeichnetes Objekt zurueck.
  * 
- * @author tebe
- * @version 18.10.2013
+ * @author Dave Kramer, Simon Schwarz
+ * @version 1.9
  */
 class Parser {
     // Lieferant fuer eingegebene Befehle

@@ -3,7 +3,7 @@
  * mit seinem Namen und seiner Beschreibung sowie 
  * seinem Gewicht.
  *  
- * @author tebe
+ * @author Dave Kramer, Simon Schwarz
  * @version 1.0
  *
  */

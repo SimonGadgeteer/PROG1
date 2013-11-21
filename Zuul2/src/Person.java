@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.ResourceBundle;
 
 /**
  * Diese Klasse modeliert eine Person, die einen Namen
@@ -8,15 +8,17 @@ import java.util.ArrayList;
  * Rucksack gepackt werden, wenn der Rucksack nicht schwerer wird
  * als die Tragkraft der Person. 
  * 
- * @author tebe
+ * @author Dave Kramer, Simon Schwarz
  * @version 1.0
  *
  */
 public class Person {
   private final String name;
   private final int tragkraft;
-  private final ArrayList<Gegenstand> rucksack = new ArrayList<Gegenstand>();
+  private Rucksack rucksack;
 
+	ResourceBundle bundle = ResourceBundle.getBundle("Resources.zuul"); //$NON-NLS-1$
+  
  /**
    * Erzeugt eine Person mit Namen und Tragkraft.
    * @param tragkraft
@@ -24,11 +26,37 @@ public class Person {
   public Person(String name, int tragkraft) {
 	  this.tragkraft = tragkraft;
 	  this.name = name;
+	  this.rucksack = new Rucksack();
   }
   
- public ArrayList<Gegenstand> getRucksack() {
+ public boolean gegenstandInRucksackPacken(Gegenstand gegenstand) {
+		if (checkGegenstandTragbar(gegenstand)) {
+			rucksack.packeGegenstand(gegenstand);
+			System.out.println(bundle.getString("98") + gegenstand.gibName() + bundle.getString("99"));
+			return true;
+		}
+		return false;
+}
+  
+public boolean checkGegenstandTragbar (Gegenstand gegenstand) {
+	if (tragkraft >= (getRucksackGewicht() + gegenstand.gibGewicht())) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+  public ArrayList<Gegenstand> getRucksackInhalt() {
+	  return rucksack.getRucksackInhalt();
+  }
+  
+  public int getRucksackGewicht() {
+	  return rucksack.getRucksackGewicht();
+  }
+  
+ /*public ArrayList<Gegenstand> getRucksack() {
 	 return rucksack;
- }
+ }*/
   
   /**
    * Gibt die Tragkraft zurueck.
