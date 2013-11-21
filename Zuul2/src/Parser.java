@@ -12,7 +12,11 @@ import java.util.Scanner;
  * unbekannter Befehl gekennzeichnetes Objekt zurueck.
  * 
  * @author Dave Kramer, Simon Schwarz
+<<<<<<< HEAD
  * @version 1.0
+=======
+ * @version 1.9
+>>>>>>> branch 'master' of https://github.com/SimonGadgeteer/PROG1.git
  */
 class Parser {
     // Lieferant fuer eingegebene Befehle
