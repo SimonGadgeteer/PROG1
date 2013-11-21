@@ -19,8 +19,8 @@ public class Kontroller {
 		String befehlswort = befehl.gibBefehlswort();
 		if (Befehlswort.istBefehl(befehlswort)) {
 
-			if (befehlswort.equals("gehe")) {
-				System.out.println("Befehl GEHE " + befehl.gibZweitesWort() + " wird ausgefuehrt");
+			if (befehlswort.equals("laufe")) {
+				System.out.println("Befehl LAUFE " + befehl.gibZweitesWort() + " wird ausgefuehrt");
 			} else if (befehlswort.equals("hilfe")) {
 				System.out.println("Gueltige Befehle: "
 						+ Befehlswort.gibBefehlsworteAlsText());
