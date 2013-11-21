@@ -1,8 +1,6 @@
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * Diese Klasse modelliert Raeume in der Welt von Zuul.
@@ -13,8 +11,8 @@ import java.util.Iterator;
  * den benachbarten Raum. In einem Raum koennen sich Personen und 
  * Gegenstaende befinden. 
  * 
- * @author  tebe (Original: Michael Koelling und David J. Barnes)
- * @version 1.0
+ * @author  tebe (Original: Michael Koelling und David J. Barnes), Dave Kramer, Simon Schwarz
+ * @version 1.1
  */
 
 class Raum 

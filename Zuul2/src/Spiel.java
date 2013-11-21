@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -15,8 +14,8 @@ import java.util.HashMap;
  * Spiel. Sie wertet auch die Befehle aus, die der Parser liefert und sorgt fuer
  * ihre Ausfuehrung.
  * 
- * @author tebe (Original: Michael Koelling und David J. Barnes)
- * @version 1.0
+ * @author tebe (Original: Michael Koelling und David J. Barnes), Dave Kramer, Simon Schwarz
+ * @version 1.3
  */
 
 public class Spiel {
@@ -31,6 +30,12 @@ public class Spiel {
 		spielweltErzeugen();
 
 		parser = new Parser();
+	}
+	
+	public static void main(String args[])
+	{
+		Spiel spiel = new Spiel();
+		spiel.spielen();
 	}
 
 	/**
@@ -168,7 +173,7 @@ public class Spiel {
 	private boolean verarbeiteBefehl(Befehl befehl) {
 		boolean moechteBeenden = false;
 
-		Befehlswort befehlswort = befehl.gibBefehlswort();
+		Befehlswort befehlswort = Befehlswort.gibBefehlsWort(befehl.gibBefehlswort());
 
 		switch (befehlswort) {
 		case UNBEKANNT:
@@ -200,7 +205,7 @@ public class Spiel {
 	}
 
 	/**
-	 * 
+	 * Gib Überblick über den aktuellen Raum, wie anwesende Personen, Gegenstände, aktueller Raumname, Ausgänge, aktuelle Person
 	 */
 	private void umsehen() {
 		System.out.println("Sie sind: " + spieler.gibName());
@@ -234,33 +239,15 @@ public class Spiel {
 	private void gegenstandEinpacken(int nummer) {
 		Gegenstand gegenstand = aktuellerRaum.herausnehmen(nummer);
 		if (gegenstand == null) {
-			System.out.println("Es gibt keinen Gegenstand mit dieser Nummer: "
-					+ nummer);
-		} else {
-			if (spieler.gibTragkraft() >= berechneGewicht(spieler.getRucksack()) + gegenstand.gibGewicht()) {
-				System.out.println("Gegenstand eingepackt: " + gegenstand.gibName());
-				spieler.getRucksack().add(gegenstand);
-			} else {
-				System.out
-						.println("Gegenstand konnte nicht eingepackt werden.");
-				aktuellerRaum.hineinlegen(gegenstand);
-			}
+			System.out.println("Es gibt keinen Gegenstand mit dieser Nummer: " + nummer);
+			return;
 		}
+		if(!spieler.gegenstandInRucksackPacken(gegenstand)) {
+			System.out.println("Gegenstand konnte nicht eingepackt werden.");
+			aktuellerRaum.hineinlegen(gegenstand);	
+		}	
 	}
 
-	/**
-	 * Berechnet das Gewicht der Gegenstaende in dieser Liste
-	 * @param rucksack Die Liste mit Gegenstaenden
-	 * @return Das Gewicht der Gegenstaende
-	 */
-	private int berechneGewicht(ArrayList<Gegenstand> rucksack) {
-		int gewicht = 0;
-		for(Gegenstand gegenstand : rucksack) {
-			gewicht += gegenstand.gibGewicht();
-		}
-		return gewicht;
-	}
-	
 	/**
 	 * Uebernimmt die Kontrolle der spezifizierten Person. Der Spieler steuert
 	 * anschliessend neu diese Person.
@@ -313,7 +300,7 @@ public class Spiel {
 	 */
 	private void befehleAusgeben() {
 		System.out.println("Ihnen stehen folgende Befehle zur Verfuegung:");
-		System.out.println(Befehlswort.gibBefehlsworteAlsText());
+		System.out.println(Befehlswort.gibBefehlsWorteAlsText());
 	}
 
 	/**
@@ -326,7 +313,6 @@ public class Spiel {
 			System.out.println("Wohin moechten Sie gehen?");
 			return;
 		}
-
 		String richtung = befehl.gibZweitesWort();
 		// Wir versuchen, den Raum zu verlassen.
 		Raum naechsterRaum = aktuellerRaum.gibAusgang(richtung);

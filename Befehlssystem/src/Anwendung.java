@@ -1,6 +1,6 @@
 /**
  * Erstellt eine kleine Anwendung welche mittels Parser User Inputs liest und dies dem Kontroller zur Weiter-
- * arbeitung übergibt.
+ * arbeitung geebergibt.
  *
  * @author  Dave Kramer, Simon Schwarz
  * @version 1.0
@@ -22,7 +22,9 @@ public class Anwendung {
     	anwendung.start();
     }
     
-    
+    /**
+     * Startet das Programm und liess solange Usereingaben bis dieser das Befehlswort zum beenden eingibt
+     */
     public void start()
     {
     	parser = new Parser();

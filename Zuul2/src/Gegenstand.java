@@ -3,8 +3,8 @@
  * mit seinem Namen und seiner Beschreibung sowie 
  * seinem Gewicht.
  *  
- * @author tebe
- * @version 1.0
+ * @author tebe, Dave Kramer, Simon Schwarz
+ * @version 1.1
  *
  */
 public class Gegenstand {
