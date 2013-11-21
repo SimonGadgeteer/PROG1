@@ -53,7 +53,7 @@ public class Worthaeufigkeitsanalyse {
     }
   }
 
-  private String entferneSatzzeichen(String wort) {
+  String entferneSatzzeichen(String wort) {
     boolean satzzeichenGefunden;
 
     do {
