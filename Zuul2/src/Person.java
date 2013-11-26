@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.ResourceBundle;
+>>>>>>> branch 'master' of https://github.com/SimonGadgeteer/PROG1.git
 
 /**
  * Diese Klasse modeliert eine Person, die einen Namen
@@ -7,8 +11,13 @@ import java.util.ArrayList;
  * Rucksack gepackt werden, wenn der Rucksack nicht schwerer wird
  * als die Tragkraft der Person. 
  * 
+<<<<<<< HEAD
  * @author tebe, Dave Kramer, Simon Schwarz
  * @version 1.1
+=======
+ * @author Dave Kramer, Simon Schwarz
+ * @version 1.0
+>>>>>>> branch 'master' of https://github.com/SimonGadgeteer/PROG1.git
  *
  */
 public class Person {
@@ -16,6 +25,8 @@ public class Person {
   private final int tragkraft;
   private Rucksack rucksack;
 
+	ResourceBundle bundle = ResourceBundle.getBundle("Resources.zuul"); //$NON-NLS-1$
+  
  /**
    * Erzeugt eine Person mit Namen und Tragkraft.
    * @param tragkraft
@@ -29,7 +40,11 @@ public class Person {
  public boolean gegenstandInRucksackPacken(Gegenstand gegenstand) {
 		if (checkGegenstandTragbar(gegenstand)) {
 			rucksack.packeGegenstand(gegenstand);
+<<<<<<< HEAD
 			System.out.println("Packe "+gegenstand.gibName()+" in Rucksack");
+=======
+			System.out.println(bundle.getString("98") + gegenstand.gibName() + bundle.getString("99"));
+>>>>>>> branch 'master' of https://github.com/SimonGadgeteer/PROG1.git
 			return true;
 		}
 		return false;

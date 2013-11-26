@@ -16,6 +16,7 @@ public class Kontroller {
 	 * @return 'false', wenn ein Abbruchbefehl verarbeitet wurde
 	 */
 	public boolean verarbeiteBefehl(Befehl befehl) {
+
 		
 		switch(Befehlswort.gibBefehlsWort(befehl.gibBefehlswort()))
 		{
