@@ -1,5 +1,3 @@
-
-
 import java.util.Random;
 
 /**
@@ -24,7 +22,7 @@ public class ZufaelligeNotengebung {
 		pruefungsverwaltung.druckeAntworttexte();
 	}
 
-	private double generiereZufaelligePruefungsnote() {
+	double generiereZufaelligePruefungsnote() {
 		Random zufallszahlengenerator = new Random();
 		zufallszahlengenerator.setSeed(zufallszahlengenerator.nextLong());
 		double zufallszahl = zufallszahlengenerator.nextDouble();

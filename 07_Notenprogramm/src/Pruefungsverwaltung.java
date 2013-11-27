@@ -62,11 +62,11 @@ public class Pruefungsverwaltung {
 		}
 	}
 
-	private double rundeAufHalbeNote(double note) {
+	double rundeAufHalbeNote(double note) {
 		return Math.round(note * 2) / 2.0;
 	}
 
-	private String generiereText(String student, double note) {
+	String generiereText(String student, double note) {
 		String noteAlsText = noteVonZahlZuText.get(note);
 
 		if (note < 4) {
