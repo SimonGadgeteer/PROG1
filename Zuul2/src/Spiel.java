@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 /**
  * Dies ist die Hauptklasse der Anwendung "Die Welt von Zuul".
@@ -23,6 +24,8 @@ public class Spiel {
 	private Raum aktuellerRaum;
 	private Person spieler;
 
+	ResourceBundle bundle = ResourceBundle.getBundle("Resources.zuul"); //$NON-NLS-1$
+	ResourceBundle bundlebefehle = ResourceBundle.getBundle("Resources.zuulbefehle");
 	/**
 	 * Erzeuge ein Spiel und initialisiere die Spielwelt.
 	 */
@@ -43,7 +46,7 @@ public class Spiel {
 	 * diese mit Personen und Gegenstaenden.
 	 */
 	private void spielweltErzeugen() {
-		spieler = new Person("Captain Kirk", 20);
+		spieler = new Person(bundle.getString("1"), 20); //$NON-NLS-1$
 		ArrayList<Raum> raeume = raeumeAnlegen();
 		fuellenMitPersonen(raeume);
 		fuellenMitGegenstaenden(raeume);
@@ -57,23 +60,23 @@ public class Spiel {
 	private ArrayList<Raum> raeumeAnlegen() {
 		HashMap<String, Raum> raum = new HashMap<String, Raum>();
 		// die Raeume erzeugen
-		raum.put("draussen", new Raum("vor dem Haupteingang der Universitaet"));
-		raum.put("hoersaal", new Raum("in einem Vorlesungssaal"));
-		raum.put("cafeteria", new Raum("in der Cafeteria der Uni"));
-		raum.put("labor", new Raum("in einem Rechnerraum"));
-		raum.put("buero", new Raum("im Verwaltungsbuero der Informatik"));
+		raum.put(bundle.getString("2"), new Raum(bundle.getString("3"))); //$NON-NLS-1$ //$NON-NLS-2$
+		raum.put(bundle.getString("4"), new Raum(bundle.getString("5"))); //$NON-NLS-1$ //$NON-NLS-2$
+		raum.put(bundle.getString("6"), new Raum(bundle.getString("7"))); //$NON-NLS-1$ //$NON-NLS-2$
+		raum.put(bundle.getString("8"), new Raum(bundle.getString("9"))); //$NON-NLS-1$ //$NON-NLS-2$
+		raum.put(bundle.getString("10"), new Raum(bundle.getString("11"))); //$NON-NLS-1$ //$NON-NLS-2$
 		// die Ausgaenge initialisieren
-		raum.get("draussen").setzeAusgang("osten", raum.get("hoersaal"));
-		raum.get("draussen").setzeAusgang("sueden", raum.get("labor"));
-		raum.get("draussen").setzeAusgang("westen", raum.get("cafeteria"));
-		raum.get("hoersaal").setzeAusgang("westen", raum.get("draussen"));
-		raum.get("cafeteria").setzeAusgang("osten", raum.get("draussen"));
-		raum.get("labor").setzeAusgang("norden", raum.get("draussen"));
-		raum.get("labor").setzeAusgang("osten", raum.get("buero"));
-		raum.get("buero").setzeAusgang("westen", raum.get("labor"));
+		raum.get(bundle.getString("2")).setzeAusgang(bundle.getString("13"), raum.get(bundle.getString("14"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(bundle.getString("2")).setzeAusgang(bundle.getString("16"), raum.get(bundle.getString("17"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(bundle.getString("2")).setzeAusgang(bundle.getString("19"), raum.get(bundle.getString("20"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(bundle.getString("21")).setzeAusgang(bundle.getString("22"), raum.get(bundle.getString("2"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(bundle.getString("24")).setzeAusgang(bundle.getString("25"), raum.get(bundle.getString("26"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(bundle.getString("27")).setzeAusgang(bundle.getString("28"), raum.get(bundle.getString("2"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(bundle.getString("30")).setzeAusgang(bundle.getString("31"), raum.get(bundle.getString("10"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(bundle.getString("10")).setzeAusgang(bundle.getString("34"), raum.get(bundle.getString("35"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		// Startraum
-		aktuellerRaum = raum.get("draussen");
+		aktuellerRaum = raum.get(bundle.getString("2")); //$NON-NLS-1$
 		ArrayList<Raum> raumliste = new ArrayList<Raum>();
 		for (Raum r : raum.values()) {
 			raumliste.add(r);
@@ -90,10 +93,10 @@ public class Spiel {
 	 */
 	private void fuellenMitPersonen(ArrayList<Raum> raum) {
 		ArrayList<Person> person = new ArrayList<Person>();
-		person.add(new Person("Dr. Hans Muster", 40));
-		person.add(new Person("Peter Stark", 80));
-		person.add(new Person("Anna Pfister", 45));
-		person.add(new Person("Prof. Dr. Luna Berger", 35));
+		person.add(new Person(bundle.getString("37"), 40)); //$NON-NLS-1$
+		person.add(new Person(bundle.getString("38"), 80)); //$NON-NLS-1$
+		person.add(new Person(bundle.getString("39"), 45)); //$NON-NLS-1$
+		person.add(new Person(bundle.getString("40"), 35)); //$NON-NLS-1$
 		int counter = 0;
 		while (person.size() > 0) {
 			if (Math.random() > 0.5) {
@@ -113,15 +116,15 @@ public class Spiel {
 	 */
 	private void fuellenMitGegenstaenden(ArrayList<Raum> raum) {
 		ArrayList<Gegenstand> gegenstand = new ArrayList<Gegenstand>();
-		gegenstand.add(new Gegenstand("Sehr schwerer Laserpointer", 1));
-		gegenstand.add(new Gegenstand("Beamer", 12));
-		gegenstand.add(new Gegenstand("Workstation", 10));
-		gegenstand.add(new Gegenstand("Wandtafel", 250));
-		gegenstand.add(new Gegenstand("Mineralwasser (6x1.5L)", 9));
-		gegenstand.add(new Gegenstand("Laptoptasche mit Laptop", 5));
-		gegenstand.add(new Gegenstand("Flipchart", 11));
-		gegenstand.add(new Gegenstand("Whiteboard", 8));
-		gegenstand.add(new Gegenstand("Toeggelikasten", 30));
+		gegenstand.add(new Gegenstand(bundle.getString("41"), 1)); //$NON-NLS-1$
+		gegenstand.add(new Gegenstand(bundle.getString("42"), 12)); //$NON-NLS-1$
+		gegenstand.add(new Gegenstand(bundle.getString("43"), 10)); //$NON-NLS-1$
+		gegenstand.add(new Gegenstand(bundle.getString("44"), 250)); //$NON-NLS-1$
+		gegenstand.add(new Gegenstand(bundle.getString("45"), 9)); //$NON-NLS-1$
+		gegenstand.add(new Gegenstand(bundle.getString("46"), 5)); //$NON-NLS-1$
+		gegenstand.add(new Gegenstand(bundle.getString("47"), 11)); //$NON-NLS-1$
+		gegenstand.add(new Gegenstand(bundle.getString("48"), 8)); //$NON-NLS-1$
+		gegenstand.add(new Gegenstand(bundle.getString("49"), 30)); //$NON-NLS-1$
 		int counter = 0;
 		while (gegenstand.size() > 0) {
 			if (Math.random() > 0.5) {
@@ -146,7 +149,7 @@ public class Spiel {
 			Befehl befehl = parser.liefereBefehl();
 			beendet = verarbeiteBefehl(befehl);
 		}
-		System.out.println("Danke fuer dieses Spiel. Auf Wiedersehen.");
+		System.out.println(bundle.getString("50")); //$NON-NLS-1$
 	}
 
 	/**
@@ -154,11 +157,11 @@ public class Spiel {
 	 */
 	private void willkommenstextAusgeben() {
 		System.out.println();
-		System.out.println("Willkommen zu Zuul!");
+		System.out.println(bundle.getString("51")); //$NON-NLS-1$
 		System.out
-				.println("Zuul ist ein neues, unglaublich langweiliges Spiel.");
-		System.out.println("Tippen sie '" + Befehlswort.HILFE
-				+ "', wenn Sie Hilfe brauchen.");
+				.println(bundle.getString("52")); //$NON-NLS-1$
+		System.out.println(bundle.getString("53") + bundlebefehle.getString("HILFE") //$NON-NLS-1$
+				+ bundle.getString("54")); //$NON-NLS-1$
 		System.out.println();
 		System.out.println(aktuellerRaum.gibLangeBeschreibung());
 	}
@@ -173,34 +176,28 @@ public class Spiel {
 	private boolean verarbeiteBefehl(Befehl befehl) {
 		boolean moechteBeenden = false;
 
-		Befehlswort befehlswort = Befehlswort.gibBefehlsWort(befehl.gibBefehlswort());
-
-		switch (befehlswort) {
-		case UNBEKANNT:
-			System.out.println("Ich weiss nicht, was Sie meinen...");
-			break;
-		case UMSEHEN:
+		if (bundlebefehle.getString("UMSEHEN").equals(befehl.gibBefehlswort())) {
 			umsehen();
-			break;
-		case HILFE:
-			hilfstextAusgeben();
-			break;
-		case GEHE:
-			wechsleRaum(befehl);
-			break;
-		case BEENDEN:
-			moechteBeenden = beenden(befehl);
-			break;
-		case UEBERNIMM:
-			uebernimm(befehl);
-			break;
-		case NIMM:
-			nimm(befehl);
-			break;
-		default:
-			System.out.println("Befehlswort ohne zugehoerige Aktion.");
-			break;
 		}
+		else if (bundlebefehle.getString("HILFE").equals(befehl.gibBefehlswort())) {
+			hilfstextAusgeben();
+		}
+		else if (bundlebefehle.getString("GEHE").equals(befehl.gibBefehlswort())) {
+			wechsleRaum(befehl);
+		}
+		else if (bundlebefehle.getString("BEENDEN").equals(befehl.gibBefehlswort())) {
+			moechteBeenden = beenden(befehl);
+		}
+		else if (bundlebefehle.getString("UEBERNIMM").equals(befehl.gibBefehlswort())) {
+			uebernimm(befehl);
+		}
+		else if (bundlebefehle.getString("NIMM").equals(befehl.gibBefehlswort())) {
+			nimm(befehl);
+		}
+		else {
+			System.out.println(bundle.getString("55"));
+		}
+
 		return moechteBeenden;
 	}
 
@@ -208,7 +205,7 @@ public class Spiel {
 	 * 
 	 */
 	private void umsehen() {
-		System.out.println("Sie sind: " + spieler.gibName());
+		System.out.println(bundle.getString("57") + spieler.gibName()); //$NON-NLS-1$
 		System.out.println(aktuellerRaum.gibLangeBeschreibung());
 	}
 
@@ -225,7 +222,7 @@ public class Spiel {
 			int kennummer = Integer.parseInt(befehl.gibZweitesWort());
 			gegenstandEinpacken(kennummer);
 		} else {
-			System.out.println("Geben Sie die Nummer des Gegenstands an.");
+			System.out.println(bundle.getString("58")); //$NON-NLS-1$
 		}
 	}
 
@@ -239,12 +236,12 @@ public class Spiel {
 	private void gegenstandEinpacken(int nummer) {
 		Gegenstand gegenstand = aktuellerRaum.herausnehmen(nummer);
 		if (gegenstand == null) {
-			System.out.println("Es gibt keinen Gegenstand mit dieser Nummer: " + nummer);
+			System.out.println(bundle.getString("59") + nummer); //$NON-NLS-1$
 			return;
 		}
 		
 		if(!spieler.gegenstandInRucksackPacken(gegenstand)) {
-			System.out.println("Gegenstand konnte nicht eingepackt werden.");
+			System.out.println(bundle.getString("60")); //$NON-NLS-1$
 			aktuellerRaum.hineinlegen(gegenstand);	
 		}
 		
@@ -265,7 +262,7 @@ public class Spiel {
 			personUebernehmen( nummer);			
 		} else
 		{
-			System.out.println("Geben Sie die Nummer der Person an.");
+			System.out.println(bundle.getString("61")); //$NON-NLS-1$
 		}
 	}
 
@@ -278,11 +275,11 @@ public class Spiel {
 	private void personUebernehmen(int nummer) {
 		Person person = aktuellerRaum.verlassen(nummer);
 		if (person == null) {
-			System.out.println("Es gibt keine Person mit Nummer " + nummer);
+			System.out.println(bundle.getString("62") + nummer); //$NON-NLS-1$
 		} else {
 			aktuellerRaum.betreten(spieler);
 			spieler = person;
-			System.out.println("Sie kontrollieren nun " + spieler.gibName());
+			System.out.println(bundle.getString("63") + spieler.gibName()); //$NON-NLS-1$
 		}
 	}
 
@@ -291,8 +288,8 @@ public class Spiel {
 	 * Beschreibung aus, sowie eine Liste der Befehlswoerter.
 	 */
 	private void hilfstextAusgeben() {
-		System.out.println("Sie haben sich verlaufen. Sie sind allein.");
-		System.out.println("Sie irren auf dem Unigelaende herum.");
+		System.out.println(bundle.getString("64")); //$NON-NLS-1$
+		System.out.println(bundle.getString("65")); //$NON-NLS-1$
 		System.out.println();
 		befehleAusgeben();
 	}
@@ -301,8 +298,10 @@ public class Spiel {
 	 * Gibt eine Liste der vorhandenen Befehlswoerter aus.
 	 */
 	private void befehleAusgeben() {
-		System.out.println("Ihnen stehen folgende Befehle zur Verfuegung:");
-		System.out.println(Befehlswort.gibBefehlsWorteAlsText());
+		System.out.println(bundle.getString("66")); //$NON-NLS-1$
+		for (String keyValue : bundlebefehle.keySet()) {
+			System.out.println(bundlebefehle.getString(keyValue));
+		}
 	}
 
 	/**
@@ -312,7 +311,7 @@ public class Spiel {
 	private void wechsleRaum(Befehl befehl) {
 		if (!befehl.hatZweitesWort()) {
 			// Gibt es kein zweites Wort, wissen wir nicht, wohin...
-			System.out.println("Wohin moechten Sie gehen?");
+			System.out.println(bundle.getString("67")); //$NON-NLS-1$
 			return;
 		}
 
@@ -320,7 +319,7 @@ public class Spiel {
 		// Wir versuchen, den Raum zu verlassen.
 		Raum naechsterRaum = aktuellerRaum.gibAusgang(richtung);
 		if (naechsterRaum == null) {
-			System.out.println("Dort ist keine Tuer!");
+			System.out.println(bundle.getString("68")); //$NON-NLS-1$
 		} else {
 			aktuellerRaum = naechsterRaum;
 			System.out.println(aktuellerRaum.gibLangeBeschreibung());
@@ -335,7 +334,7 @@ public class Spiel {
 	 */
 	private boolean beenden(Befehl befehl) {
 		if (befehl.hatZweitesWort()) {
-			System.out.println("Was soll beendet werden?");
+			System.out.println(bundle.getString("69")); //$NON-NLS-1$
 			return false;
 		} else {
 			return true;

@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 /**
  * Diese Klasse modelliert Raeume in der Welt von Zuul.
@@ -21,6 +22,8 @@ class Raum
 	private final ArrayList<Person> person = new ArrayList<Person>();
 	private final ArrayList<Gegenstand> gegenstand = new ArrayList<Gegenstand>();
     private final HashMap<String, Raum> ausgaenge = new HashMap<String, Raum>();
+    
+    ResourceBundle bundle = ResourceBundle.getBundle("Resources.zuul");
 
     /**
      * Erzeuge einen Raum mit einer Beschreibung. Ein Raum
@@ -109,17 +112,17 @@ class Raum
      */
     public String gibLangeBeschreibung()
     {
-        return "Sie sind " + beschreibung + ".\n" 
+        return bundle.getString("100") + beschreibung + ".\n" 
         		+ gibAusgaengeAlsString()
         		+ gibGegenstaendeAlsString()
         	    + gibPersonenAlsString();
     }
 
     private String gibGegenstaendeAlsString() {
-    	String text = "Keine Gegenstaende im Raum.\n";
+    	String text = bundle.getString("101");
     	if(gegenstand.size()>0) {
 	    	int counter = 0;
-	    	text = "Gegenstaende im Raum:\n";
+	    	text = bundle.getString("102");
 	    	for( Gegenstand objekt : gegenstand) {
 	    		text += " " + counter++ + ": " + objekt.gibName() + "\n";
 	    	}
@@ -128,9 +131,9 @@ class Raum
     }
 
     private String gibPersonenAlsString() {
-		String text = "Keine Personen im Raum.\n";
+		String text = bundle.getString("103");
     	if(person.size()>0){
-    		text="Personen im Raum:\n";
+    		text=bundle.getString("104");
         	int counter = 0;
         	for( Person objekt : person) {
         		text += " " + counter++ + ": " + objekt.gibName() + "\n";
@@ -147,7 +150,7 @@ class Raum
      */
     private String gibAusgaengeAlsString()
     {
-        String ergebnis = "Ausgaenge:";
+        String ergebnis = bundle.getString("105");
         Set<String> keys = ausgaenge.keySet();
         for(String ausgang : keys)
             ergebnis += " " + ausgang;
