@@ -3,8 +3,13 @@
  * mit seinem Namen und seiner Beschreibung sowie 
  * seinem Gewicht.
  *  
- * @author tebe
+<<<<<<< HEAD
+ * @author tebe, Dave Kramer, Simon Schwarz
+ * @version 1.1
+=======
+ * @author Dave Kramer, Simon Schwarz
  * @version 1.0
+>>>>>>> branch 'master' of https://github.com/SimonGadgeteer/PROG1.git
  *
  */
 public class Gegenstand {

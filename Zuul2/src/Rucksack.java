@@ -1,9 +1,15 @@
 import java.util.ArrayList;
 
 /**
- * @author Simon Schwarz, Dave Kramer
  * Ein Rucksack kann Gegenstände einpacken und auspacken.
  * Als Indikator wird das Gegenstandsobjekt benötigt.
+<<<<<<< HEAD
+ * 
+ *  @author Simon Schwarz, Dave Kramer
+ *  @version	1.0
+=======
+ * @author Simon Schwarz, Dave Kramer
+>>>>>>> branch 'master' of https://github.com/SimonGadgeteer/PROG1.git
  */
 
 public class Rucksack {

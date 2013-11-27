@@ -2,8 +2,13 @@
  * Diese Klasse haelt eine Aufzaehlung der akzeptierten Befehlswoerter.
  * Mit ihrer Hilfe werden eingetippte Befehle erkannt.
  *
- * @author  tebe
+<<<<<<< HEAD
+ * @author  tebe, Dave Kramer, Simon Schwarz
+ * @version 1.1
+=======
+ * @author  Dave Kramer, Simon Schwarz
  * @version 1.0
+>>>>>>> branch 'master' of https://github.com/SimonGadgeteer/PROG1.git
  */
 public enum Befehlswort {
 

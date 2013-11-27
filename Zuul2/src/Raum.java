@@ -3,6 +3,7 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+
 /**
  * Diese Klasse modelliert Raeume in der Welt von Zuul.
  * 
@@ -12,7 +13,7 @@ import java.util.ResourceBundle;
  * den benachbarten Raum. In einem Raum koennen sich Personen und 
  * Gegenstaende befinden. 
  * 
- * @author  tebe (Original: Michael Koelling und David J. Barnes)
+ * @author  Dave Kramer, Simon Schwarz
  * @version 1.0
  */
 

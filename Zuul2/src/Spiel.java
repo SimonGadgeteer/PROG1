@@ -40,6 +40,12 @@ public class Spiel {
 		Spiel spiel = new Spiel();
 		spiel.spielen();
 	}
+	
+	public static void main(String args[])
+	{
+		Spiel spiel = new Spiel();
+		spiel.spielen();
+	}
 
 	/**
 	 * Baut die Spielewelt auf. Erzeugt die Raeume mit Verbindungen und fuellt
@@ -59,21 +65,38 @@ public class Spiel {
 	 */
 	private ArrayList<Raum> raeumeAnlegen() {
 		HashMap<String, Raum> raum = new HashMap<String, Raum>();
+		String draussen = bundle.getString("2");
+		String draussenBeschreibung = bundle.getString("3");
+		String hoersaal = bundle.getString("4");
+		String hoersaalBeschreibung = bundle.getString("5");
+		String cafeteria = bundle.getString("6");
+		String cafeteriaBeschreibung = bundle.getString("7");
+		String labor = bundle.getString("8");
+		String laborBeschreibung = bundle.getString("9");
+		String buero = bundle.getString("10");
+		String bueroBeschreibung = bundle.getString("11");
+		
+		String osten = bundle.getString("13");
+		String westen = bundle.getString("19");
+		String norden = bundle.getString("28");
+		String sueden = bundle.getString("16");
+		
 		// die Raeume erzeugen
-		raum.put(bundle.getString("2"), new Raum(bundle.getString("3"))); //$NON-NLS-1$ //$NON-NLS-2$
-		raum.put(bundle.getString("4"), new Raum(bundle.getString("5"))); //$NON-NLS-1$ //$NON-NLS-2$
-		raum.put(bundle.getString("6"), new Raum(bundle.getString("7"))); //$NON-NLS-1$ //$NON-NLS-2$
-		raum.put(bundle.getString("8"), new Raum(bundle.getString("9"))); //$NON-NLS-1$ //$NON-NLS-2$
-		raum.put(bundle.getString("10"), new Raum(bundle.getString("11"))); //$NON-NLS-1$ //$NON-NLS-2$
+		raum.put(draussen, new Raum(draussenBeschreibung)); //$NON-NLS-1$ //$NON-NLS-2$
+		raum.put(hoersaal, new Raum(hoersaalBeschreibung)); //$NON-NLS-1$ //$NON-NLS-2$
+		raum.put(cafeteria, new Raum(cafeteriaBeschreibung)); //$NON-NLS-1$ //$NON-NLS-2$
+		raum.put(labor, new Raum(laborBeschreibung)); //$NON-NLS-1$ //$NON-NLS-2$
+		raum.put(buero, new Raum(bueroBeschreibung)); //$NON-NLS-1$ //$NON-NLS-2$
+
 		// die Ausgaenge initialisieren
-		raum.get(bundle.getString("2")).setzeAusgang(bundle.getString("13"), raum.get(bundle.getString("14"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		raum.get(bundle.getString("2")).setzeAusgang(bundle.getString("16"), raum.get(bundle.getString("17"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		raum.get(bundle.getString("2")).setzeAusgang(bundle.getString("19"), raum.get(bundle.getString("20"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		raum.get(bundle.getString("21")).setzeAusgang(bundle.getString("22"), raum.get(bundle.getString("2"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		raum.get(bundle.getString("24")).setzeAusgang(bundle.getString("25"), raum.get(bundle.getString("26"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		raum.get(bundle.getString("27")).setzeAusgang(bundle.getString("28"), raum.get(bundle.getString("2"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		raum.get(bundle.getString("30")).setzeAusgang(bundle.getString("31"), raum.get(bundle.getString("10"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		raum.get(bundle.getString("10")).setzeAusgang(bundle.getString("34"), raum.get(bundle.getString("35"))); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(draussen).setzeAusgang(osten, raum.get(hoersaal)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(draussen).setzeAusgang(sueden, raum.get(labor)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(draussen).setzeAusgang(westen, raum.get(cafeteria)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(hoersaal).setzeAusgang(westen, raum.get(draussen)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(cafeteria).setzeAusgang(osten, raum.get(draussen)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(labor).setzeAusgang(norden, raum.get(draussen)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(labor).setzeAusgang(osten, raum.get(buero)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		raum.get(buero).setzeAusgang(westen, raum.get(labor)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		// Startraum
 		aktuellerRaum = raum.get(bundle.getString("2")); //$NON-NLS-1$
@@ -202,7 +225,7 @@ public class Spiel {
 	}
 
 	/**
-	 * 
+	 * Gib Überblick über den aktuellen Raum, wie anwesende Personen, Gegenstände, aktueller Raumname, Ausgänge, aktuelle Person
 	 */
 	private void umsehen() {
 		System.out.println(bundle.getString("57") + spieler.gibName()); //$NON-NLS-1$
@@ -239,12 +262,10 @@ public class Spiel {
 			System.out.println(bundle.getString("59") + nummer); //$NON-NLS-1$
 			return;
 		}
-		
 		if(!spieler.gegenstandInRucksackPacken(gegenstand)) {
 			System.out.println(bundle.getString("60")); //$NON-NLS-1$
 			aktuellerRaum.hineinlegen(gegenstand);	
 		}
-		
 	}
 
 	/**
@@ -314,7 +335,6 @@ public class Spiel {
 			System.out.println(bundle.getString("67")); //$NON-NLS-1$
 			return;
 		}
-
 		String richtung = befehl.gibZweitesWort();
 		// Wir versuchen, den Raum zu verlassen.
 		Raum naechsterRaum = aktuellerRaum.gibAusgang(richtung);
