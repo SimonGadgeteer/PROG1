@@ -1,3 +1,13 @@
+/**
+ * @author Dave Kramer, Simon Schwarz
+ * @version 1.0
+ * 
+ * Stellt einen Studenten dar.
+ * @param ID eindeutige Identifikation eines Studenten
+ * @param name name des Studenten
+ * @param credits anzahl credits des Studenten
+ *
+ */
 
 public class Student extends Person{
 	int credits;
