@@ -1,9 +1,18 @@
 
 public class Bank {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("juh3");
+	private String inhaber;
+	private int kontoStand;
+	
+	public Bank(String inhaber, int kontoStand)
+	{
+		this.inhaber = inhaber;
+		
+		if(this.kontoStand < 100000 && (this.kontoStand + kontoStand) <= 100000)
+		{
+			this.kontoStand = kontoStand;
+		}
 	}
+	
 
 }
