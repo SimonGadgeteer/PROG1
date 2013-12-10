@@ -3,41 +3,31 @@ abstract class Bankkonto {
 
 	private String inhaber;
 	private int kontoStand;
-	protected int inhaberNummer;
-	protected int kontostandMin;
-	protected int kontostandMax;
-	
-	private static int inhaberNummerCounter = 1000;
+	protected static final int kontostandMin = 0;
+	protected static final int kontostandMax = 100000;
+
 	
 	/**
 	 * Erstellt ein Bankkonto
 	 * @param inhaber definiert den Namen des Inhabers
 	 * @param kontoStand definiert den initialen Kontostand des Inhabers in Rappen
 	 * @param kontostandMin definiert die tiefste limite der Kontosubklassen
-	 * @param kontostandMax definiert die höchste limite der Kontosubklassen
 	 */
-	public Bankkonto(String inhaber, int kontoStand, int kontostandMin, int kontostandMax)
+	public Bankkonto(String inhaber, int kontoStand)
 	{
-		this.kontostandMin = kontostandMin;
-		this.kontostandMax = kontostandMax;
-		
 		this.inhaber = inhaber;
 		deponiereGeld(kontoStand);
-		inhaberNummer = inhaberNummerCounter++;
 	}
 	
-	public Bankkonto(String inhaber, int kontostandMin, int kontostandMax)
+	public Bankkonto(String inhaber)
 	{
-		this(inhaber, 0, kontostandMin, kontostandMax);
+		this(inhaber, 0);
 	}
 	
 	public int getKontostand(){
 		return kontoStand;
 	}
 	
-	public int getInhaberNummer(){
-		return inhaberNummer;
-	}
 
 	public Object getInhaber(){
 		return inhaber;
@@ -53,6 +43,11 @@ abstract class Bankkonto {
 		{
 			kontoStand += geldSumme;
 		}
+		else
+		{
+			System.out.println("Maximum erreicht! Es wurden nur "+(kontostandMax - kontoStand)+" einbezahlt.");
+			kontoStand = kontostandMax;
+		}
 	}
 	
 	/**
@@ -65,5 +60,14 @@ abstract class Bankkonto {
 		{
 			kontoStand -= geldSumme;
 		}
-	}	
+		else
+		{
+			System.out.println("Es fehlen dem Konto "+(geldSumme - kontoStand)+" für diese Auszahlung!");
+		}
+	}
+	
+	public String toString()
+	{
+		return "Inhaber: "+getInhaber()+", Kontostand: "+getKontostand();
+	}
 }

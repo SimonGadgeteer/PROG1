@@ -1,5 +1,8 @@
 
 public class Nummernkonto extends Bankkonto{
+	
+	private static int inhaberNummerCounter = 1000;
+	private int inhaberNummer;
 
 	/**
 	 * Erstellt ein Nummernkonto mit der Tiefstlimite 0 und Höchstlimite von 10000000 Rappen
@@ -7,16 +10,19 @@ public class Nummernkonto extends Bankkonto{
 	 * @param kontoStand definiert den initialen Kontostand des Inhabers in Rappen
 	 */
 	public Nummernkonto(String inhaber, int kontoStand) {
-		super(inhaber, kontoStand, 0, 10000000);
+		super(inhaber, kontoStand);
+		inhaberNummer = inhaberNummerCounter++;
 	}
 	
 	public Nummernkonto(String inhaber)
 	{
 		this(inhaber, 0);
+		inhaberNummer = inhaberNummerCounter++;
 	}
 	
 	@Override
 	public Object getInhaber(){
 		return inhaberNummer;
 	}
+
 }
