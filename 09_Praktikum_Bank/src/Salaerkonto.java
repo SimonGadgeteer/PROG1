@@ -63,7 +63,7 @@ public class Salaerkonto extends Bankkonto{
 		}
 		else
 		{
-			System.out.println("Es fehlen dem Konto "+(geldSumme - (super.getKontostand()+limite))+" für diese Auszahlung!");
+			System.out.println("Es fehlen "+(geldSumme - (super.getKontostand()+limite))+" für diese Auszahlung!");
 		}
 	}
 }

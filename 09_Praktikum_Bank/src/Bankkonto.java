@@ -2,9 +2,9 @@
 abstract class Bankkonto {
 
 	private String inhaber;
-	private int kontoStand;
+	private int kontoStand = 0;
 	protected static final int kontostandMin = 0;
-	protected static final int kontostandMax = 100000;
+	protected static final int kontostandMax = 10000000;
 
 	
 	/**
@@ -25,7 +25,7 @@ abstract class Bankkonto {
 	}
 	
 	public int getKontostand(){
-		return kontoStand;
+		return rappenZuFranken(kontoStand);
 	}
 	
 
@@ -39,13 +39,14 @@ abstract class Bankkonto {
 	 */
 	public void deponiereGeld(int geldSumme)
 	{
-		if(kontoStand + geldSumme <= kontostandMax)
+		int summe = frankenZuRappen(geldSumme);
+		if(kontoStand + summe <= kontostandMax)
 		{
-			kontoStand += geldSumme;
+			kontoStand += summe;
 		}
 		else
 		{
-			System.out.println("Maximum erreicht! Es wurden nur "+(kontostandMax - kontoStand)+" einbezahlt.");
+			System.out.println("Maximum erreicht! Es wurden nur "+(rappenZuFranken(kontostandMax - kontoStand))+" einbezahlt.");
 			kontoStand = kontostandMax;
 		}
 	}
@@ -56,18 +57,20 @@ abstract class Bankkonto {
 	 */
 	public void abhebeGeld(int geldSumme)
 	{
-		if(kontoStand - geldSumme <= kontostandMin)
-		{
-			kontoStand -= geldSumme;
-		}
-		else
-		{
-			System.out.println("Es fehlen dem Konto "+(geldSumme - kontoStand)+" für diese Auszahlung!");
-		}
+		int summe = frankenZuRappen(geldSumme);
+			kontoStand -= summe;
 	}
 	
 	public String toString()
 	{
 		return "Inhaber: "+getInhaber()+", Kontostand: "+getKontostand();
+	}
+	
+	public int frankenZuRappen(int betrag){
+		return betrag * 100;
+	}
+	
+	public int rappenZuFranken(int betrag){
+		return betrag / 100;
 	}
 }

@@ -24,5 +24,17 @@ public class Nummernkonto extends Bankkonto{
 	public Object getInhaber(){
 		return inhaberNummer;
 	}
+	
+	public void abhebeGeld(int geldSumme)
+	{
+		if(super.getKontostand() - geldSumme >= kontostandMin)
+		{
+			super.abhebeGeld(geldSumme);
+		}
+		else
+		{
+			System.out.println("Es fehlen "+((geldSumme - super.getKontostand()))+" für diese Auszahlung!");
+		}
+	}
 
 }
