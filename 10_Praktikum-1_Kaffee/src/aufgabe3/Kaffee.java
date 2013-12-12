@@ -1,10 +1,11 @@
+package aufgabe3;
 /**
  * Diese Klasse bietet die Funktionalitaet, um einen Kaffee
  * zu kochen.
  * 
  * @author tebe
  */
-public class Kaffee {
+public class Kaffee extends KoffeinGetraenk{
 
   /**
    * Bereitet einen Kaffee zu.
@@ -16,9 +17,14 @@ public class Kaffee {
     fuegeZuckerUndMilchHinzu();
   }
 
-  private void kocheWasser() {
-    // Implementieren Sie z.B. eine Ausgabe
-  }
+  private void fuegeZuckerUndMilchHinzu() {
+	System.out.println("Plätscher");
+	
+}
 
-  // Weitere Methoden
+private void braueFilterKaffee() {
+	System.out.println("Blubber Blubber");
+	
+}
+
 }
